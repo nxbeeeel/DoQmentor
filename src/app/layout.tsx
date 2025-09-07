@@ -1,24 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
-import React from 'react'
+import { Inter } from 'next/font/google'
 import './globals.css'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'DoQmentor - Global Consulting for a Connected World',
-  description: 'Empowering your vision with comprehensive international consultancy services. Expert solutions for documentation, licensing, and global business expansion.',
-  keywords: 'consulting, international business, documentation, licensing, global expansion, DoQmentor',
+  title: 'DoQmentor - Global Business Consulting',
+  description: 'Empowering your vision with comprehensive global consulting services for documentation, licensing, and business expansion.',
 }
 
 export default function RootLayout({
@@ -27,9 +16,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased">
-        {children}
+    <html lang="en">
+      <body className={inter.className}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

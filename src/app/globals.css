@@ -14,6 +14,20 @@
   --charcoal: #1a1a1a;
 }
 
+/* Light theme variables */
+[data-theme="light"] {
+  --foreground-rgb: 26, 26, 26;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* Dark theme variables (default) */
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 65, 105, 225;
+  --background-end-rgb: 65, 105, 225;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

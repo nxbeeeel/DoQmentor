@@ -3,14 +3,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen } from 'lucide-react';
+import { useTheme } from '@/contexts/ThemeContext';
 import { COMPANY_INFO } from '@/constants';
 
 export const Logo = () => {
+  const { theme } = useTheme();
+  
   return (
     <div className="flex items-center space-x-2">
       {/* Stylized Q as open book/document */}
       <div className="relative">
-        <svg width="32" height="32" viewBox="0 0 32 32" className="text-white" style={{filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))'}}>
+        <svg 
+          width="32" 
+          height="32" 
+          viewBox="0 0 32 32" 
+          className={`transition-colors duration-500 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}
+          style={{
+            filter: theme === 'dark' 
+              ? 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))' 
+              : 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+          }}
+        >
           <path
             d="M16 4C10.48 4 6 8.48 6 14c0 5.52 4.48 10 10 10 1.18 0 2.32-.21 3.38-.58L24 28l-4.62-4.62C21.79 21.32 22 20.18 22 19c0-5.52-4.48-10-10-10z"
             fill="currentColor"
@@ -24,8 +37,18 @@ export const Logo = () => {
       </div>
       
       {/* Company Name */}
-      <span className="font-serif text-2xl font-bold text-white tracking-tight" style={{textShadow: '0 2px 12px rgba(0,0,0,0.4)', fontFamily: 'Playfair Display, serif'}}>
-        Do<span className="text-blue-200">Q</span>mentor
+      <span 
+        className={`font-serif text-2xl font-bold tracking-tight transition-colors duration-500 ${
+          theme === 'dark' ? 'text-white' : 'text-gray-800'
+        }`} 
+        style={{
+          textShadow: theme === 'dark' 
+            ? '0 2px 12px rgba(0,0,0,0.4)' 
+            : '0 2px 6px rgba(0,0,0,0.1)', 
+          fontFamily: 'Playfair Display, serif'
+        }}
+      >
+        Do<span className={theme === 'dark' ? 'text-blue-200' : 'text-blue-600'}>Q</span>mentor
       </span>
     </div>
   );

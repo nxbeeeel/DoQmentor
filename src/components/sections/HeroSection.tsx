@@ -5,11 +5,20 @@ import { motion } from 'framer-motion';
 import { ArrowDown, ChevronRight } from 'lucide-react';
 import { Logo } from '@/components/common/Logo';
 import { Button } from '@/components/ui/Button';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { useTheme } from '@/contexts/ThemeContext';
 import { COMPANY_INFO } from '@/constants';
 
 export const HeroSection = () => {
+  const { theme } = useTheme();
+  
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 bg-royal-blue relative overflow-hidden" style={{perspective: '1000px'}}>
+    <section 
+      className={`min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 relative overflow-hidden transition-all duration-500 ${
+        theme === 'dark' ? 'bg-royal-blue' : 'bg-gradient-to-br from-slate-50 to-white'
+      }`} 
+      style={{perspective: '1000px'}}
+    >
       {/* Enhanced 3D Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Main floating orb with 3D effect */}
@@ -102,6 +111,9 @@ export const HeroSection = () => {
         ))}
       </div>
 
+      {/* Theme Toggle */}
+      <ThemeToggle />
+
       {/* Navigation */}
       <nav className="absolute top-0 left-0 right-0 z-10 flex justify-center items-center p-4 sm:p-6">
         <Logo />
@@ -110,27 +122,37 @@ export const HeroSection = () => {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto text-center z-10">
         <motion.h1 
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 sm:mb-6 text-center leading-tight px-2"
+          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 sm:mb-6 text-center leading-tight px-2 transition-colors duration-500 ${
+            theme === 'dark' ? 'text-white' : 'text-gray-900'
+          }`}
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           style={{
             fontFamily: 'Inter, system-ui, sans-serif',
             fontWeight: 900,
-            textShadow: '0 6px 30px rgba(0,0,0,0.6), 0 0 80px rgba(255,255,255,0.15)',
-            filter: 'drop-shadow(0 0 25px rgba(255,255,255,0.4))',
+            textShadow: theme === 'dark' 
+              ? '0 6px 30px rgba(0,0,0,0.6), 0 0 80px rgba(255,255,255,0.15)'
+              : '0 4px 20px rgba(0,0,0,0.1)',
+            filter: theme === 'dark' 
+              ? 'drop-shadow(0 0 25px rgba(255,255,255,0.4))'
+              : 'drop-shadow(0 2px 10px rgba(0,0,0,0.1))',
             letterSpacing: '-0.02em'
           }}
         >
           Empowering Your Vision.
           <br />
           <motion.span 
-            className="text-blue-200"
+            className={theme === 'dark' ? 'text-blue-200' : 'text-blue-600'}
             animate={{ 
-              textShadow: [
+              textShadow: theme === 'dark' ? [
                 '0 0 30px rgba(255,255,255,0.6)',
                 '0 0 60px rgba(255,255,255,0.4)',
                 '0 0 30px rgba(255,255,255,0.6)'
+              ] : [
+                '0 0 20px rgba(59,130,246,0.4)',
+                '0 0 40px rgba(59,130,246,0.2)',
+                '0 0 20px rgba(59,130,246,0.4)'
               ]
             }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -142,14 +164,18 @@ export const HeroSection = () => {
         </motion.h1>
 
         <motion.p 
-          className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 text-center max-w-3xl leading-relaxed px-4"
+          className={`text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-center max-w-3xl leading-relaxed px-4 transition-colors duration-500 ${
+            theme === 'dark' ? 'text-white' : 'text-gray-700'
+          }`}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
           style={{
             fontFamily: 'Inter, system-ui, sans-serif',
             fontWeight: 500,
-            textShadow: '0 4px 20px rgba(0,0,0,0.5)',
+            textShadow: theme === 'dark' 
+              ? '0 4px 20px rgba(0,0,0,0.5)' 
+              : '0 2px 10px rgba(0,0,0,0.1)',
             backdropFilter: 'blur(2px)',
             opacity: 0.95
           }}
@@ -171,12 +197,20 @@ export const HeroSection = () => {
           >
             <button 
               onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-10 py-5 text-xl font-bold text-royal-blue rounded-2xl transition-all duration-300"
+              className={`px-10 py-5 text-xl font-bold rounded-2xl transition-all duration-300 ${
+                theme === 'dark' ? 'text-royal-blue' : 'text-white'
+              }`}
               style={{
-                background: 'rgba(255,255,255,0.95)',
+                background: theme === 'dark' 
+                  ? 'rgba(255,255,255,0.95)' 
+                  : 'linear-gradient(135deg, #4169E1, #6B8AFF)',
                 backdropFilter: 'blur(20px)',
-                border: '2px solid rgba(255,255,255,0.4)',
-                boxShadow: '0 12px 40px rgba(0,0,0,0.15), inset 0 2px 0 rgba(255,255,255,0.5)',
+                border: theme === 'dark' 
+                  ? '2px solid rgba(255,255,255,0.4)' 
+                  : '2px solid rgba(255,255,255,0.3)',
+                boxShadow: theme === 'dark'
+                  ? '0 12px 40px rgba(0,0,0,0.15), inset 0 2px 0 rgba(255,255,255,0.5)'
+                  : '0 12px 40px rgba(65,105,225,0.3), inset 0 2px 0 rgba(255,255,255,0.3)',
                 fontFamily: 'Inter, system-ui, sans-serif',
                 letterSpacing: '0.5px'
               }}
