@@ -5,7 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --royal-blue: #4169E1;
+  --royal-blue: 65, 105, 225;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 65, 105, 225;
+  --background-end-rgb: 65, 105, 225;
   --royal-blue-light: #6B8AFF;
   --royal-blue-dark: #2E4BC6;
   --charcoal: #1a1a1a;
@@ -22,8 +25,9 @@ html {
 }
 
 body {
-  color: var(--charcoal);
-  background: #ffffff;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--royal-blue));
+  min-height: 100vh;
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
