@@ -103,26 +103,23 @@ export const HeroSection = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center p-4 sm:p-6">
+      <nav className="absolute top-0 left-0 right-0 z-10 flex justify-center items-center p-4 sm:p-6">
         <Logo />
-        <Button 
-          onClick={() => window.open('https://calendly.com/doqmentor', '_blank')}
-          className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
-        >
-          Schedule Consultation
-        </Button>
       </nav>
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto text-center z-10">
         <motion.h1 
-          className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 sm:mb-6 text-center leading-tight px-2"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 sm:mb-6 text-center leading-tight px-2"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           style={{
-            textShadow: '0 4px 20px rgba(0,0,0,0.4), 0 0 60px rgba(255,255,255,0.1)',
-            filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.3))'
+            fontFamily: 'Inter, system-ui, sans-serif',
+            fontWeight: 900,
+            textShadow: '0 6px 30px rgba(0,0,0,0.6), 0 0 80px rgba(255,255,255,0.15)',
+            filter: 'drop-shadow(0 0 25px rgba(255,255,255,0.4))',
+            letterSpacing: '-0.02em'
           }}
         >
           Empowering Your Vision.
@@ -145,25 +142,28 @@ export const HeroSection = () => {
         </motion.h1>
 
         <motion.p 
-          className="text-lg sm:text-xl md:text-2xl text-blue-100 mb-8 sm:mb-12 text-center max-w-3xl leading-relaxed px-4"
+          className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 text-center max-w-3xl leading-relaxed px-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
           style={{
-            textShadow: '0 2px 15px rgba(0,0,0,0.3)',
-            backdropFilter: 'blur(2px)'
+            fontFamily: 'Inter, system-ui, sans-serif',
+            fontWeight: 500,
+            textShadow: '0 4px 20px rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(2px)',
+            opacity: 0.95
           }}
         >
           {COMPANY_INFO.description}
         </motion.p>
 
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12 sm:mb-16 px-4 justify-center items-center"
+          className="flex justify-center mb-12 sm:mb-16 px-4"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
         >
-          {/* Primary Learn More Button */}
+          {/* Single Learn More Button */}
           <motion.div
             whileHover={{ scale: 1.05, y: -8 }}
             whileTap={{ scale: 0.95 }}
@@ -171,29 +171,18 @@ export const HeroSection = () => {
           >
             <button 
               onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 text-lg font-semibold text-royal-blue rounded-xl"
+              className="px-10 py-5 text-xl font-bold text-royal-blue rounded-2xl transition-all duration-300"
               style={{
                 background: 'rgba(255,255,255,0.95)',
                 backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255,255,255,0.3)',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.4)'
+                border: '2px solid rgba(255,255,255,0.4)',
+                boxShadow: '0 12px 40px rgba(0,0,0,0.15), inset 0 2px 0 rgba(255,255,255,0.5)',
+                fontFamily: 'Inter, system-ui, sans-serif',
+                letterSpacing: '0.5px'
               }}
             >
-              Learn More
+              Explore Our Services
             </button>
-          </motion.div>
-          
-          {/* Secondary Schedule Consultation Button */}
-          <motion.div
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Button 
-              onClick={() => window.open('https://calendly.com/doqmentor', '_blank')}
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-royal-blue px-6 py-3 text-sm font-medium"
-            >
-              Schedule Consultation
-            </Button>
           </motion.div>
         </motion.div>
       </div>
@@ -204,7 +193,7 @@ export const HeroSection = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-royal-blue" />
+        <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-white" style={{filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3)'}} />
       </motion.div>
     </section>
   );
