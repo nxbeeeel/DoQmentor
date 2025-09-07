@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Send } from 'lucide-react';
@@ -9,23 +10,28 @@ import { emailService } from '@/services/emailService';
 import { CONTACT_EMAIL } from '@/constants';
 
 export const OtherServicesSection = () => {
-  const [formData, setFormData] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.trim()) return;
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) return;
 
     setIsSubmitting(true);
     
     try {
       const subject = 'Service Request - DoQmentor';
-      const body = `Service Request Details:\n\n${formData}\n\nBest regards,\nPotential Client`;
+      const body = `Service Request Details:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`;
       
       await emailService.sendEmail(CONTACT_EMAIL, subject, body);
       setIsSubmitted(true);
-      setFormData('');
+      setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
       console.error('Error sending request:', error);
     } finally {
@@ -34,7 +40,7 @@ export const OtherServicesSection = () => {
   };
 
   return (
-    <Section>
+    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-royal-blue">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -42,11 +48,11 @@ export const OtherServicesSection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-charcoal mb-6">
-            Don't See What You <span className="text-royal-blue">Need?</span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+            Don't See What You <span className="text-blue-200">Need?</span>
           </h2>
           
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto">
             Tell us about your specific requirements, and we'll be in touch to help you find the right solution.
           </p>
 
@@ -54,17 +60,17 @@ export const OtherServicesSection = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-green-50 border border-green-200 rounded-2xl p-8"
+              className="bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 backdrop-blur-sm"
             >
-              <div className="text-green-600 text-lg font-semibold mb-2">
+              <div className="text-white text-lg font-semibold mb-2">
                 Thank you for your request!
               </div>
-              <p className="text-green-700">
+              <p className="text-blue-100">
                 Your email client should have opened with your request. We'll get back to you shortly.
               </p>
               <button
                 onClick={() => setIsSubmitted(false)}
-                className="mt-4 text-royal-blue hover:text-royal-blue-dark font-semibold"
+                className="mt-4 text-white hover:text-blue-200 font-semibold"
               >
                 Send Another Request
               </button>
@@ -78,13 +84,44 @@ export const OtherServicesSection = () => {
               onSubmit={handleSubmit}
               className="max-w-2xl mx-auto"
             >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+                <div>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    placeholder="Your Name *"
+                    className="w-full p-4 text-base sm:text-lg bg-white/10 border-2 border-white/20 rounded-xl focus:border-white focus:outline-none transition-colors duration-300 text-white placeholder-blue-200"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    placeholder="Email Address *"
+                    className="w-full p-4 text-base sm:text-lg bg-white/10 border-2 border-white/20 rounded-xl focus:border-white focus:outline-none transition-colors duration-300 text-white placeholder-blue-200"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="mb-4 sm:mb-6">
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  placeholder="Phone Number (Optional)"
+                  className="w-full p-4 text-base sm:text-lg bg-white/10 border-2 border-white/20 rounded-xl focus:border-white focus:outline-none transition-colors duration-300 text-white placeholder-blue-200"
+                />
+              </div>
               <div className="relative">
                 <textarea
-                  value={formData}
-                  onChange={(e) => setFormData(e.target.value)}
-                  placeholder="Describe the service you are looking for..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  placeholder="Describe the service you are looking for... *"
                   rows={6}
-                  className="w-full p-6 text-lg border-2 border-gray-200 rounded-2xl focus:border-royal-blue focus:outline-none resize-none transition-colors duration-300"
+                  className="w-full p-4 sm:p-6 text-base sm:text-lg bg-white/10 border-2 border-white/20 rounded-xl focus:border-white focus:outline-none resize-none transition-colors duration-300 text-white placeholder-blue-200"
                   required
                 />
               </div>
@@ -92,8 +129,8 @@ export const OtherServicesSection = () => {
               <div className="mt-6 flex justify-center">
                 <Button 
                   type="submit" 
-                  disabled={isSubmitting || !formData.trim()}
-                  className="disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isSubmitting || !formData.name.trim() || !formData.email.trim() || !formData.message.trim()}
+                  className="bg-white text-royal-blue hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold"
                 >
                   {isSubmitting ? (
                     <>
@@ -112,6 +149,6 @@ export const OtherServicesSection = () => {
           )}
         </motion.div>
       </div>
-    </Section>
+    </section>
   );
 };
