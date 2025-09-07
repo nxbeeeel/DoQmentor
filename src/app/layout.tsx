@@ -16,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" data-theme="dark" style={{ colorScheme: 'light !important' }}>
+      <body className={inter.className} style={{ colorScheme: 'light !important', background: '#1e3a8a !important' }}>
         <ThemeProvider>
           {children}
         </ThemeProvider>

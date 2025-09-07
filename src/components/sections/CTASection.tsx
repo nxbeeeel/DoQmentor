@@ -5,10 +5,20 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { COMPANY_INFO } from '@/constants';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export const CTASection = () => {
+  const { theme } = useTheme();
+  
   return (
-    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-royal-blue">
+    <section 
+      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6"
+      style={{
+        background: theme === 'dark' 
+          ? '#1e3a8a'
+          : '#87CEEB'
+      }}
+    >
       <div className="max-w-4xl mx-auto text-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -17,10 +27,10 @@ export const CTASection = () => {
           viewport={{ once: true }}
         >
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            Ready to Expand Your <span className="text-blue-200">Global Reach?</span>
+            Ready to Expand Your <span className={theme === 'dark' ? 'text-blue-200' : 'text-teal-200'}>Global Reach?</span>
           </h2>
           
-          <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className={`text-lg sm:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed ${theme === 'dark' ? 'text-blue-100' : 'text-teal-100'}`}>
             Let's discuss how {COMPANY_INFO.name} can help you navigate the complexities of international business 
             and unlock new opportunities for growth.
           </p>

@@ -15,9 +15,13 @@ export const HeroSection = () => {
   return (
     <section 
       className={`min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 relative overflow-hidden transition-all duration-500 ${
-        theme === 'dark' ? 'bg-royal-blue' : 'bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50'
+        theme === 'dark' ? 'bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900' : 'bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50'
       }`} 
-      style={{perspective: '1000px'}}
+      style={{
+        background: theme === 'dark' 
+          ? '#1e3a8a'
+          : '#87CEEB'
+      }}
     >
       {/* Enhanced 3D Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -115,14 +119,16 @@ export const HeroSection = () => {
       <ThemeToggle />
 
       {/* Navigation */}
-      <nav className="absolute top-0 left-0 right-0 z-10 flex justify-center items-center p-4 sm:p-6">
-        <Logo />
+      <nav className="absolute top-0 left-0 right-0 z-20 flex justify-center items-center p-6 lg:p-8">
+        <div className="w-full max-w-7xl mx-auto flex justify-center">
+          <Logo />
+        </div>
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto text-center z-10">
+      <div className="max-w-4xl mx-auto text-center z-10 pt-32 lg:pt-40">
         <motion.h1 
-          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 lg:mb-8 text-center leading-tight px-2 transition-colors duration-500 ${
+          className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 lg:mb-8 text-center leading-tight px-4 transition-colors duration-500 ${
             theme === 'dark' ? 'text-white' : 'text-gray-800'
           }`}
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -146,9 +152,9 @@ export const HeroSection = () => {
             className={theme === 'dark' ? 'text-blue-200' : 'text-teal-600'}
             animate={{ 
               textShadow: theme === 'dark' ? [
-                '0 0 30px rgba(255,255,255,0.6)',
-                '0 0 60px rgba(255,255,255,0.4)',
-                '0 0 30px rgba(255,255,255,0.6)'
+                '0 0 30px rgba(107,138,255,0.6)',
+                '0 0 60px rgba(107,138,255,0.4)',
+                '0 0 30px rgba(107,138,255,0.6)'
               ] : [
                 '0 0 20px rgba(20,184,166,0.4)',
                 '0 0 40px rgba(20,184,166,0.2)',

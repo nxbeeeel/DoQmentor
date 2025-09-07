@@ -1,12 +1,15 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 import { TESTIMONIALS } from '@/constants';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export const TestimonialsSection = () => {
+  const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextTestimonial = () => {
@@ -18,7 +21,14 @@ export const TestimonialsSection = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-royal-blue relative overflow-hidden">
+    <section 
+      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 relative overflow-hidden"
+      style={{
+        background: theme === 'dark' 
+          ? '#1e3a8a'
+          : '#87CEEB'
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -27,9 +37,9 @@ export const TestimonialsSection = () => {
         className="text-center mb-16"
       >
         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6" style={{textShadow: '0 4px 20px rgba(0,0,0,0.3)'}}>
-          What Our <span className="text-blue-200">Clients Say</span>
+          What Our <span className={theme === 'dark' ? 'text-blue-200' : 'text-teal-200'}>Clients Say</span>
         </h2>
-        <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto" style={{textShadow: '0 2px 10px rgba(0,0,0,0.2)'}}>
+        <p className={`text-lg sm:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto ${theme === 'dark' ? 'text-blue-100' : 'text-teal-100'}`} style={{textShadow: '0 2px 10px rgba(0,0,0,0.2)'}}>
           Trusted by businesses worldwide for exceptional consultancy services.
         </p>
       </motion.div>
@@ -57,17 +67,15 @@ export const TestimonialsSection = () => {
                 ))}
               </div>
               
-              <p className="text-sm sm:text-base text-blue-100 mb-4 sm:mb-6 flex-grow leading-relaxed">
+              <p className={`text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed italic ${theme === 'dark' ? 'text-blue-100' : 'text-teal-100'}`}>
                 "{TESTIMONIALS[currentIndex].text}"
               </p>
               
-              <div>
-                <h4 className="font-semibold text-sm sm:text-base text-white" style={{textShadow: '0 2px 8px rgba(0,0,0,0.2)'}}>
-                  {TESTIMONIALS[currentIndex].name}
-                </h4>
-                <p className="text-xs sm:text-sm text-blue-200">
-                  {TESTIMONIALS[currentIndex].company}
-                </p>
+              <div className="text-white font-semibold text-base sm:text-lg mb-1">
+                {TESTIMONIALS[currentIndex].name}
+              </div>
+              <div className={`text-sm sm:text-base ${theme === 'dark' ? 'text-blue-200' : 'text-teal-200'}`}>
+                {TESTIMONIALS[currentIndex].company}
               </div>
             </div>
           </div>

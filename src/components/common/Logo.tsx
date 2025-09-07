@@ -40,7 +40,7 @@ export const Logo = () => {
         <div 
           className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 ${
             theme === 'dark' 
-              ? 'bg-gradient-to-br from-blue-200 to-blue-300 text-blue-800' 
+              ? 'bg-gradient-to-br from-gray-300 to-gray-400 text-gray-800' 
               : 'bg-gradient-to-br from-teal-200 to-teal-300 text-teal-800'
           }`}
           style={{

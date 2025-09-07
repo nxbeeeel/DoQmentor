@@ -6,10 +6,20 @@ import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { COMPANY_INFO, STATS } from '@/constants';
 import { getIconComponent } from '@/utils/iconMapper';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export const AboutSection = () => {
+  const { theme } = useTheme();
+  
   return (
-    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-royal-blue relative overflow-hidden">
+    <section 
+      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 relative overflow-hidden"
+      style={{
+        background: theme === 'dark' 
+          ? '#1e3a8a'
+          : '#87CEEB'
+      }}
+    >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -18,17 +28,17 @@ export const AboutSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6" style={{textShadow: '0 4px 20px rgba(0,0,0,0.3)'}}> 
-            About <span className="text-blue-200">DoQmentor</span>
+            About <span className={theme === 'dark' ? 'text-blue-200' : 'text-teal-200'}>DoQmentor</span>
           </h2>
           
-          <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed" style={{textShadow: '0 2px 10px rgba(0,0,0,0.2)'}}>
+          <p className={`text-lg sm:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed ${theme === 'dark' ? 'text-blue-100' : 'text-teal-100'}`} style={{textShadow: '0 2px 10px rgba(0,0,0,0.2)'}}>
             At {COMPANY_INFO.name}, we believe in empowering businesses to reach their global potential. 
             Our comprehensive consultancy services bridge the gap between ambition and achievement, 
             providing expert guidance through the complex landscape of international documentation, 
             licensing, and business expansion.
           </p>
           
-          <p className="text-lg text-blue-100 mb-8 leading-relaxed">
+          <p className={`text-lg mb-8 leading-relaxed ${theme === 'dark' ? 'text-blue-100' : 'text-teal-100'}`}>
             With over a decade of experience and a commitment to excellence, we've helped hundreds 
             of businesses navigate regulatory requirements, secure necessary documentation, and 
             establish their presence in global markets with confidence and precision.

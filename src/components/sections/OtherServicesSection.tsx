@@ -8,8 +8,10 @@ import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { emailService } from '@/services/emailService';
 import { CONTACT_EMAIL } from '@/constants';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export const OtherServicesSection = () => {
+  const { theme } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -40,7 +42,14 @@ export const OtherServicesSection = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-royal-blue">
+    <section 
+      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6"
+      style={{
+        background: theme === 'dark' 
+          ? '#1e3a8a'
+          : '#87CEEB'
+      }}
+    >
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -49,10 +58,10 @@ export const OtherServicesSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            Don't See What You <span className="text-blue-200">Need?</span>
+            Don't See What You <span className={theme === 'dark' ? 'text-blue-200' : 'text-teal-200'}>Need?</span>
           </h2>
           
-          <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto">
+          <p className={`text-lg sm:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto ${theme === 'dark' ? 'text-blue-100' : 'text-teal-100'}`}>
             Tell us about your specific requirements, and we'll be in touch to help you find the right solution.
           </p>
 
@@ -65,12 +74,12 @@ export const OtherServicesSection = () => {
               <div className="text-white text-lg font-semibold mb-2">
                 Thank you for your request!
               </div>
-              <p className="text-blue-100">
+              <p className={theme === 'dark' ? 'text-gray-300' : 'text-teal-100'}>
                 Your email client should have opened with your request. We'll get back to you shortly.
               </p>
               <button
                 onClick={() => setIsSubmitted(false)}
-                className="mt-4 text-white hover:text-blue-200 font-semibold"
+                className={`mt-4 font-semibold ${theme === 'dark' ? 'text-white hover:text-gray-300' : 'text-white hover:text-teal-200'}`}
               >
                 Send Another Request
               </button>
