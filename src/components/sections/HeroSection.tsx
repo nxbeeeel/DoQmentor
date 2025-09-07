@@ -10,10 +10,10 @@ import { COMPANY_INFO } from '@/constants';
 export const HeroSection = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
-      {/* Floating geometric element */}
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 opacity-10">
+      {/* Background geometric elements */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-royal-blue/5 rounded-full"
+          className="absolute top-1/4 right-1/4 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-royal-blue/5 rounded-full"
           animate={{
             rotate: 360,
             scale: [1, 1.1, 1]
@@ -24,12 +24,41 @@ export const HeroSection = () => {
             ease: "linear"
           }}
         />
+        <motion.div
+          className="absolute top-1/3 left-1/4 w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-royal-blue/3 rounded-full"
+          animate={{
+            rotate: -360,
+            scale: [1, 1.2, 1]
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/3 w-20 h-20 sm:w-28 sm:h-28 lg:w-36 lg:h-36 bg-royal-blue/4 rounded-full"
+          animate={{
+            rotate: 360,
+            scale: [1, 0.9, 1]
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
       </div>
 
       {/* Navigation */}
       <nav className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center p-4 sm:p-6">
         <Logo />
-        <Button>Schedule Consultation</Button>
+        <Button 
+          onClick={() => window.open('https://calendly.com/doqmentor', '_blank')}
+          className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
+        >
+          Schedule Consultation
+        </Button>
       </nav>
 
       {/* Main Content */}
@@ -47,8 +76,19 @@ export const HeroSection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12 sm:mb-16 px-4 justify-center items-center">
-          <Button>Get Started</Button>
-          <Button variant="secondary">Learn More</Button>
+          <Button 
+            onClick={() => window.open('https://calendly.com/doqmentor', '_blank')}
+            className="w-full sm:w-auto"
+          >
+            Get Started
+          </Button>
+          <Button 
+            variant="secondary"
+            className="w-full sm:w-auto"
+            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Learn More
+          </Button>
         </div>
       </div>
 

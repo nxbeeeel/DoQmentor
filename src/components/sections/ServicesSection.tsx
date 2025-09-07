@@ -9,21 +9,22 @@ import { getIconComponent } from '@/utils/iconMapper';
 
 export const ServicesSection = () => {
   return (
-    <Section background="gray">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 sm:mb-6 px-4">
-          Our <span className="text-royal-blue">Services</span>
-        </h2>
-        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-          Comprehensive solutions for your global business needs, delivered with precision and expertise.
-        </p>
-      </motion.div>
+    <Section variant="gray" id="services">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 sm:mb-6 px-4">
+            Our <span className="text-royal-blue">Services</span>
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+            Comprehensive solutions for your global business needs, delivered with precision and expertise.
+          </p>
+        </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {SERVICES.map((service, index) => {
@@ -54,6 +55,7 @@ export const ServicesSection = () => {
             </motion.div>
           );
         })}
+      </div>
       </div>
     </Section>
   );
