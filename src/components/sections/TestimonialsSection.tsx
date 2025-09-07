@@ -18,7 +18,7 @@ export const TestimonialsSection = () => {
   };
 
   return (
-    <Section background="gray">
+    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-royal-blue relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -26,10 +26,10 @@ export const TestimonialsSection = () => {
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 sm:mb-6 text-center px-4">
-          What Our <span className="text-royal-blue">Clients Say</span>
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6" style={{textShadow: '0 4px 20px rgba(0,0,0,0.3)'}}>
+          What Our <span className="text-blue-200">Clients Say</span>
         </h2>
-        <p className="text-lg sm:text-xl text-gray-600 text-center max-w-3xl mx-auto mb-8 sm:mb-16 px-4">
+        <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto" style={{textShadow: '0 2px 10px rgba(0,0,0,0.2)'}}>
           Trusted by businesses worldwide for exceptional consultancy services.
         </p>
       </motion.div>
@@ -41,7 +41,7 @@ export const TestimonialsSection = () => {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
           transition={{ duration: 0.5 }}
-          className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg text-center max-w-2xl mx-auto"
+          className="rounded-2xl p-6 sm:p-8 h-full flex flex-col" style={{background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.2)', boxShadow: '0 8px 32px rgba(0,0,0,0.1)'}}
         >
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
@@ -57,15 +57,15 @@ export const TestimonialsSection = () => {
                 ))}
               </div>
               
-              <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed italic">
+              <p className="text-sm sm:text-base text-blue-100 mb-4 sm:mb-6 flex-grow leading-relaxed">
                 "{TESTIMONIALS[currentIndex].text}"
               </p>
               
               <div>
-                <h4 className="font-semibold text-lg sm:text-xl text-charcoal mb-2">
+                <h4 className="font-semibold text-sm sm:text-base text-white" style={{textShadow: '0 2px 8px rgba(0,0,0,0.2)'}}>
                   {TESTIMONIALS[currentIndex].name}
                 </h4>
-                <p className="text-sm sm:text-base text-royal-blue font-medium">
+                <p className="text-xs sm:text-sm text-blue-200">
                   {TESTIMONIALS[currentIndex].company}
                 </p>
               </div>
@@ -101,6 +101,6 @@ export const TestimonialsSection = () => {
           ))}
         </div>
       </div>
-    </Section>
+    </section>
   );
 };

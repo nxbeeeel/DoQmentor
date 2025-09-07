@@ -9,7 +9,7 @@ import { getIconComponent } from '@/utils/iconMapper';
 
 export const AboutSection = () => {
   return (
-    <Section>
+    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-royal-blue relative overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -17,18 +17,18 @@ export const AboutSection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 sm:mb-6 px-4">
-            About <span className="text-royal-blue">{COMPANY_INFO.name}</span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6" style={{textShadow: '0 4px 20px rgba(0,0,0,0.3)'}}> 
+            About <span className="text-blue-200">DoQmentor</span>
           </h2>
           
-          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+          <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed" style={{textShadow: '0 2px 10px rgba(0,0,0,0.2)'}}>
             At {COMPANY_INFO.name}, we believe in empowering businesses to reach their global potential. 
             Our comprehensive consultancy services bridge the gap between ambition and achievement, 
             providing expert guidance through the complex landscape of international documentation, 
             licensing, and business expansion.
           </p>
           
-          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+          <p className="text-lg text-blue-100 mb-8 leading-relaxed">
             With over a decade of experience and a commitment to excellence, we've helped hundreds 
             of businesses navigate regulatory requirements, secure necessary documentation, and 
             establish their presence in global markets with confidence and precision.
@@ -53,15 +53,15 @@ export const AboutSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gray-50 p-4 sm:p-6 rounded-2xl text-center hover:bg-gray-100 transition-colors duration-300"
+                className="rounded-2xl p-6 sm:p-8 text-center" style={{background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.2)', boxShadow: '0 8px 32px rgba(0,0,0,0.1)'}} 
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-royal-blue/10 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                  <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-royal-blue" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4" style={{background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(10px)'}}>
+                  <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h3 className="font-bold text-2xl sm:text-3xl text-charcoal mb-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2" style={{textShadow: '0 2px 15px rgba(0,0,0,0.3)'}}>
                   {stat.number}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600 font-medium">
+                </div>
+                <p className="text-sm sm:text-base text-blue-100 font-medium">
                   {stat.label}
                 </p>
               </motion.div>
@@ -69,6 +69,6 @@ export const AboutSection = () => {
           })}
         </motion.div>
       </div>
-    </Section>
+    </section>
   );
 };
