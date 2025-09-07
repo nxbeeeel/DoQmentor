@@ -10,45 +10,62 @@ export const Logo = () => {
   const { theme } = useTheme();
   
   return (
-    <div className="flex items-center space-x-2">
-      {/* Stylized Q as open book/document */}
+    <div className="flex items-center space-x-3">
+      {/* Modern D and Q Logo */}
       <div className="relative">
-        <svg 
-          width="32" 
-          height="32" 
-          viewBox="0 0 32 32" 
-          className={`transition-colors duration-500 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}
+        <div 
+          className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${
+            theme === 'dark' 
+              ? 'bg-gradient-to-br from-blue-400 to-blue-600' 
+              : 'bg-gradient-to-br from-teal-400 to-teal-600'
+          }`}
           style={{
-            filter: theme === 'dark' 
-              ? 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))' 
-              : 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+            boxShadow: theme === 'dark'
+              ? '0 4px 20px rgba(59,130,246,0.3), inset 0 1px 0 rgba(255,255,255,0.2)'
+              : '0 4px 20px rgba(20,184,166,0.3), inset 0 1px 0 rgba(255,255,255,0.2)'
           }}
         >
-          <path
-            d="M16 4C10.48 4 6 8.48 6 14c0 5.52 4.48 10 10 10 1.18 0 2.32-.21 3.38-.58L24 28l-4.62-4.62C21.79 21.32 22 20.18 22 19c0-5.52-4.48-10-10-10z"
-            fill="currentColor"
-            opacity="0.2"
-          />
-          <path
-            d="M16 6C11.58 6 8 9.58 8 14s3.58 8 8 8c.88 0 1.73-.14 2.52-.4l3.88 3.88 1.41-1.41-3.88-3.88c.26-.79.4-1.64.4-2.52 0-4.42-3.58-8-8-8zm0 2c3.31 0 6 2.69 6 6 0 .69-.12 1.35-.33 1.97L18 12.31V10h-4v6h2.69l-3.66 3.67C11.35 19.12 10.69 19 10 19c-3.31 0-6-2.69-6-6s2.69-6 6-6z"
-            fill="currentColor"
-          />
-        </svg>
+          <span 
+            className="text-white font-black text-lg"
+            style={{
+              fontFamily: 'Inter, system-ui, sans-serif',
+              textShadow: '0 1px 3px rgba(0,0,0,0.3)'
+            }}
+          >
+            D
+          </span>
+        </div>
+        
+        {/* Small Q accent */}
+        <div 
+          className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 ${
+            theme === 'dark' 
+              ? 'bg-gradient-to-br from-blue-200 to-blue-300 text-blue-800' 
+              : 'bg-gradient-to-br from-teal-200 to-teal-300 text-teal-800'
+          }`}
+          style={{
+            boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+          }}
+        >
+          Q
+        </div>
       </div>
       
       {/* Company Name */}
       <span 
-        className={`font-serif text-2xl font-bold tracking-tight transition-colors duration-500 ${
+        className={`text-2xl font-semibold tracking-wide transition-colors duration-500 ${
           theme === 'dark' ? 'text-white' : 'text-gray-800'
         }`} 
         style={{
+          fontFamily: 'Inter, system-ui, sans-serif',
+          fontWeight: 600,
           textShadow: theme === 'dark' 
-            ? '0 2px 12px rgba(0,0,0,0.4)' 
-            : '0 2px 6px rgba(0,0,0,0.1)', 
-          fontFamily: 'Playfair Display, serif'
+            ? '0 2px 8px rgba(0,0,0,0.3)' 
+            : '0 1px 3px rgba(0,0,0,0.1)',
+          letterSpacing: '0.5px'
         }}
       >
-        Do<span className={theme === 'dark' ? 'text-blue-200' : 'text-blue-600'}>Q</span>mentor
+        DoQmentor
       </span>
     </div>
   );
