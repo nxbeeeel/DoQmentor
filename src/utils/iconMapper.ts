@@ -8,6 +8,7 @@ import {
   Shield, 
   Users,
   Clock,
+  Home,
   LucideIcon
 } from 'lucide-react';
 
@@ -20,7 +21,8 @@ export const iconMap: Record<string, LucideIcon> = {
   FileText,
   Shield,
   Users,
-  Clock
+  Clock,
+  Home
 };
 
 export const getIconComponent = (iconName: string): LucideIcon => {

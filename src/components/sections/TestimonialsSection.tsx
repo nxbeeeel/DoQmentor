@@ -26,26 +26,26 @@ export const TestimonialsSection = () => {
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <h2 className="font-serif text-4xl md:text-5xl font-bold text-charcoal mb-6">
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 sm:mb-6 text-center px-4">
           What Our <span className="text-royal-blue">Clients Say</span>
         </h2>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-lg sm:text-xl text-gray-600 text-center max-w-3xl mx-auto mb-8 sm:mb-16 px-4">
           Trusted by businesses worldwide for exceptional consultancy services.
         </p>
       </motion.div>
 
-      <div className="relative max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto relative px-4">
         <motion.div
           key={currentIndex}
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
           transition={{ duration: 0.5 }}
-          className="bg-white rounded-3xl p-8 md:p-12 shadow-xl max-w-4xl mx-auto"
+          className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg text-center max-w-2xl mx-auto"
         >
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
-              <div className="w-20 h-20 bg-royal-blue rounded-full flex items-center justify-center text-white font-bold text-xl">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-royal-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 {TESTIMONIALS[currentIndex].image}
               </div>
             </div>
@@ -57,17 +57,17 @@ export const TestimonialsSection = () => {
                 ))}
               </div>
               
-              <blockquote className="text-lg md:text-xl text-gray-700 mb-6 leading-relaxed italic">
+              <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed italic">
                 "{TESTIMONIALS[currentIndex].text}"
-              </blockquote>
+              </p>
               
               <div>
-                <div className="font-semibold text-charcoal text-lg">
+                <h4 className="font-semibold text-lg sm:text-xl text-charcoal mb-2">
                   {TESTIMONIALS[currentIndex].name}
-                </div>
-                <div className="text-royal-blue font-medium">
+                </h4>
+                <p className="text-sm sm:text-base text-royal-blue font-medium">
                   {TESTIMONIALS[currentIndex].company}
-                </div>
+                </p>
               </div>
             </div>
           </div>
@@ -78,23 +78,23 @@ export const TestimonialsSection = () => {
           onClick={prevTestimonial}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-300"
         >
-          <ChevronLeft className="w-6 h-6 text-royal-blue" />
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
         </button>
         
         <button
           onClick={nextTestimonial}
           className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-300"
         >
-          <ChevronRight className="w-6 h-6 text-royal-blue" />
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
         </button>
 
         {/* Dots indicator */}
-        <div className="flex justify-center mt-8 space-x-2">
+        <div className="flex justify-center items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
           {TESTIMONIALS.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors duration-300 ${
                 index === currentIndex ? 'bg-royal-blue' : 'bg-gray-300'
               }`}
             />

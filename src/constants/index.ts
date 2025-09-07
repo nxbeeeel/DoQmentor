@@ -2,51 +2,57 @@ import { Service, Testimonial, Stat } from '@/types';
 
 export const SERVICES: Service[] = [
   {
-    id: 'pancard-passport',
+    id: '1',
     title: 'PANCARD & PASSPORT',
-    description: 'Complete assistance with PAN card applications and passport documentation services.',
+    description: 'Complete assistance with PAN card applications and passport services for seamless documentation.',
     icon: 'CreditCard'
   },
   {
-    id: 'embassy-attestation',
+    id: '2',
     title: 'EMBASSY ATTESTATION',
-    description: 'Professional embassy attestation services for international document verification.',
+    description: 'Professional embassy attestation services for all your international document requirements.',
     icon: 'Globe'
   },
   {
-    id: 'import-export',
+    id: '3',
     title: 'IMPORT & EXPORT LICENCE',
-    description: 'Comprehensive licensing solutions for international trade operations.',
+    description: 'Streamlined import and export licensing to facilitate your international trade operations.',
     icon: 'Briefcase'
   },
   {
-    id: 'trademark',
+    id: '4',
     title: 'TRADE MARK REGISTRATION',
-    description: 'Protect your brand with expert trademark registration and intellectual property services.',
+    description: 'Comprehensive trademark registration services to protect your brand and intellectual property.',
     icon: 'Award'
   },
   {
-    id: 'company-registration',
+    id: '5',
     title: 'COMPANY REGISTRATION',
-    description: 'End-to-end company incorporation and business registration services.',
+    description: 'End-to-end company registration services for establishing your business presence.',
     icon: 'Building'
   },
   {
-    id: 'deed-gst',
+    id: '6',
     title: 'DEED & GST REGISTRATION',
-    description: 'Legal documentation and GST registration for seamless business operations.',
+    description: 'Professional deed preparation and GST registration for complete business compliance.',
     icon: 'FileText'
   },
   {
-    id: 'business-licenses',
+    id: '7',
     title: 'ALL TYPE OF BUSINESS LICENCES',
-    description: 'Comprehensive licensing solutions for various business verticals and industries.',
+    description: 'Comprehensive licensing solutions for all types of business operations and requirements.',
     icon: 'Shield'
   },
   {
-    id: 'insurance',
+    id: '8',
+    title: 'REAL ESTATE SERVICES',
+    description: 'Complete real estate solutions including property documentation, registration, and legal compliance.',
+    icon: 'Home'
+  },
+  {
+    id: '9',
     title: 'ALL KINDS OF INSURANCE SERVICES',
-    description: 'Complete insurance solutions to protect your business and personal interests.',
+    description: 'Complete insurance solutions tailored to protect your business and personal interests.',
     icon: 'Users'
   }
 ];

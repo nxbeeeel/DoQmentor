@@ -17,7 +17,7 @@ export const AboutSection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-charcoal mb-6">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 sm:mb-6 px-4">
             About <span className="text-royal-blue">{COMPANY_INFO.name}</span>
           </h2>
           
@@ -42,7 +42,7 @@ export const AboutSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
         >
           {STATS.map((stat, index) => {
             const IconComponent = getIconComponent(stat.icon);
@@ -53,17 +53,17 @@ export const AboutSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gray-50 p-6 rounded-2xl text-center hover:bg-gray-100 transition-colors duration-300"
+                className="bg-gray-50 p-4 sm:p-6 rounded-2xl text-center hover:bg-gray-100 transition-colors duration-300"
               >
-                <div className="w-12 h-12 bg-royal-blue/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <IconComponent className="w-6 h-6 text-royal-blue" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-royal-blue/10 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-royal-blue" />
                 </div>
-                <div className="font-serif text-3xl font-bold text-charcoal mb-2">
+                <h3 className="font-bold text-2xl sm:text-3xl text-charcoal mb-2">
                   {stat.number}
-                </div>
-                <div className="text-gray-600 font-medium">
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 font-medium">
                   {stat.label}
-                </div>
+                </p>
               </motion.div>
             );
           })}
