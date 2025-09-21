@@ -12,16 +12,21 @@ import { COMPANY_INFO } from '@/constants';
 export const HeroSection = () => {
   const { theme } = useTheme();
   
+  // Theme-dependent styles for better performance
+  const backgroundStyle = {
+    background: theme === 'dark' ? '#1e3a8a' : '#87CEEB'
+  };
+  
+  const textShadowStyle = theme === 'dark' 
+    ? '0 6px 30px rgba(0,0,0,0.6), 0 0 80px rgba(255,255,255,0.15)'
+    : '0 4px 20px rgba(0,0,0,0.15)';
+  
   return (
     <section 
       className={`min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 relative overflow-hidden transition-all duration-500 ${
         theme === 'dark' ? 'bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900' : 'bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50'
       }`} 
-      style={{
-        background: theme === 'dark' 
-          ? '#1e3a8a'
-          : '#87CEEB'
-      }}
+      style={backgroundStyle}
     >
       {/* Enhanced 3D Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -137,9 +142,7 @@ export const HeroSection = () => {
           style={{
             fontFamily: 'Inter, system-ui, sans-serif',
             fontWeight: 900,
-            textShadow: theme === 'dark' 
-              ? '0 6px 30px rgba(0,0,0,0.6), 0 0 80px rgba(255,255,255,0.15)'
-              : '0 4px 20px rgba(0,0,0,0.15)',
+            textShadow: textShadowStyle,
             filter: theme === 'dark' 
               ? 'drop-shadow(0 0 25px rgba(255,255,255,0.4))'
               : 'drop-shadow(0 2px 10px rgba(0,0,0,0.1))',
@@ -233,7 +236,7 @@ export const HeroSection = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-white" style={{filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3)'}} />
+        <ArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-white" style={{filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))'}} />
       </motion.div>
     </section>
   );
