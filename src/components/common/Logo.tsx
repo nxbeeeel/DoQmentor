@@ -47,9 +47,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
               style={{ 
                 objectFit: 'contain',
                 display: 'block',
-                filter: theme === 'dark' 
-                  ? 'drop-shadow(0 0 6px rgba(255,255,255,0.85))' 
-                  : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
+                filter: `${theme === 'dark' ? 'drop-shadow(0 0 6px rgba(255,255,255,0.85)) ' : ''}brightness(0) invert(1)`
               }}
               priority
               onError={() => setImageOk(false)}
