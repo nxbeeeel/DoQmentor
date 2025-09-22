@@ -42,10 +42,11 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
             <Image
               src="/logo.png"
               alt="DoQmentor logo"
-              fill
-              sizes="(max-width: 80px) 100vw, 80px"
+              width={sizeConfig[size].svg}
+              height={sizeConfig[size].svg}
               style={{ 
                 objectFit: 'contain',
+                display: 'block',
                 filter: theme === 'dark' 
                   ? 'drop-shadow(0 0 6px rgba(255,255,255,0.85))' 
                   : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
@@ -114,14 +115,15 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
             />
           </svg>
           
-          {/* Subtle glow effect */}
-          <div 
-            className="absolute inset-0 rounded-full opacity-20"
-            style={{
-              background: 'radial-gradient(circle, #1e40af 0%, transparent 70%)',
-              filter: 'blur(8px)'
-            }}
-          />
+          {!imageOk && (
+            <div 
+              className="absolute inset-0 rounded-full opacity-20"
+              style={{
+                background: 'radial-gradient(circle, #1e40af 0%, transparent 70%)',
+                filter: 'blur(8px)'
+              }}
+            />
+          )}
         </motion.div>
       </div>
       
