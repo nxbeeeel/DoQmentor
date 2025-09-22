@@ -1,6 +1,6 @@
 'use client';
 
-import { CSSProperties } from 'react';
+import { CSSProperties, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -14,6 +14,7 @@ interface LogoProps {
 
 export const Logo = ({ size = 'medium', showText = true, className = '', useImage = true }: LogoProps) => {
   const { theme } = useTheme();
+  const [imageOk, setImageOk] = useState<boolean>(useImage);
   
   const sizeConfig = {
     small: { svg: 32, text: 'text-lg', spacing: 'space-x-2' },
@@ -35,7 +36,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
           whileHover={{ rotate: 5 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
-          {useImage ? (
+          {imageOk ? (
             <Image
               src="/logo.png"
               alt="DoQmentor logo"
@@ -43,9 +44,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
               sizes="(max-width: 80px) 100vw, 80px"
               style={{ objectFit: 'contain' }}
               priority
-              onError={(e) => {
-                // If image is missing, do nothing here; SVG fallback below will still render behind due to absolute fill
-              }}
+              onError={() => setImageOk(false)}
             />
           ) : null}
           {/* Main DQ Logo SVG Recreation */}
@@ -54,7 +53,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
             height={sizeConfig[size].svg} 
             viewBox="0 0 100 100" 
             className="drop-shadow-lg"
-            style={{ display: useImage ? 'none' : 'block' }}
+            style={{ display: imageOk ? 'none' : 'block' }}
           >
             {/* D Letter */}
             <path
