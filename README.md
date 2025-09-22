@@ -1,46 +1,67 @@
 # DoQmentor - Premium Consulting Website
 
-A modern, premium Next.js website for DoQmentor international consultancy services, built with SOLID principles and clean architecture.
+A modern, premium Next.js website for DoQmentor international consultancy services, built with clean architecture and optimized performance.
 
-## 🏗️ Project Structure
+## 🏗️ Clean Project Structure
 
 ```
-DoQmentor-Main/
+doqmentor-new/
 ├── src/
-│   ├── app/                    # Next.js App Router
+│   ├── app/                    # Next.js 14 App Router
 │   │   ├── globals.css         # Global styles & Tailwind
-│   │   ├── layout.tsx          # Root layout
-│   │   └── page.tsx            # Home page
-│   ├── components/             # React components
+│   │   ├── layout.tsx          # Root layout with ThemeProvider
+│   │   └── page.tsx            # Home page with optimized imports
+│   ├── components/             # React components (no React imports needed)
+│   │   ├── index.ts            # Centralized component exports
 │   │   ├── common/             # Shared components
-│   │   │   ├── CustomCursor.tsx
-│   │   │   └── Logo.tsx
+│   │   │   ├── CustomCursor.tsx # Premium cursor with animations
+│   │   │   └── Logo.tsx        # Enhanced DQ logo with SVG
 │   │   ├── sections/           # Page sections
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── ServicesSection.tsx
-│   │   │   ├── OtherServicesSection.tsx
-│   │   │   ├── TestimonialsSection.tsx
-│   │   │   ├── AboutSection.tsx
-│   │   │   └── CTASection.tsx
+│   │   │   ├── HeroSection.tsx # Hero with glassmorphism effects
+│   │   │   ├── ServicesSection.tsx # 9 service cards
+│   │   │   ├── OtherServicesSection.tsx # Contact form
+│   │   │   ├── TestimonialsSection.tsx # Testimonials carousel
+│   │   │   ├── AboutSection.tsx # Company info & stats
+│   │   │   └── CTASection.tsx  # Call-to-action section
 │   │   └── ui/                 # Reusable UI components
-│   │       ├── Button.tsx
-│   │       ├── Card.tsx
-│   │       └── Section.tsx
+│   │       ├── Button.tsx      # Animated button component
+│   │       ├── Card.tsx        # Card wrapper with hover effects
+│   │       ├── Section.tsx     # Section wrapper component
+│   │       └── ThemeToggle.tsx # Dark/light theme toggle
 │   ├── constants/              # Application constants
-│   │   └── index.ts
-│   ├── hooks/                  # Custom React hooks
-│   │   └── useCursor.ts
-│   ├── services/               # Business logic services
-│   │   └── emailService.ts
-│   ├── types/                  # TypeScript type definitions
-│   │   └── index.ts
-│   └── utils/                  # Utility functions
-│       └── iconMapper.ts
-├── package.json
-├── tailwind.config.js
-├── tsconfig.json
-└── next.config.js
+│   │   └── index.ts           # Services, testimonials, company info
+│   ├── contexts/              # React contexts
+│   │   └── ThemeContext.tsx   # Theme management context
+│   ├── hooks/                 # Custom React hooks
+│   │   └── useCursor.ts       # Custom cursor hook
+│   ├── services/              # Business logic services
+│   │   └── emailService.ts    # Email service implementation
+│   ├── types/                 # TypeScript type definitions
+│   │   └── index.ts          # All interface definitions
+│   └── utils/                 # Utility functions
+│       └── iconMapper.ts     # Lucide icon mapping utility
+├── package.json               # Dependencies & scripts
+├── tailwind.config.js        # Tailwind configuration
+├── tsconfig.json            # TypeScript configuration
+├── next.config.js           # Next.js configuration
+└── netlify.toml            # Deployment configuration
 ```
+
+## ✨ Code Cleanup & Optimization
+
+### Recent Improvements
+- **Removed duplicate React imports**: Leveraging Next.js 14's automatic JSX runtime
+- **Centralized component exports**: Single `components/index.ts` for cleaner imports
+- **Optimized import statements**: Reduced bundle size and improved tree-shaking
+- **Enhanced TypeScript configuration**: Better type checking and performance
+- **Cleaned file structure**: Removed duplicate directories and unused files
+- **Improved Next.js configuration**: Added React Strict Mode and SWC minification
+
+### Performance Optimizations
+- **Automatic JSX runtime**: No need for explicit React imports
+- **Tree-shaking optimization**: Better dead code elimination
+- **Centralized exports**: Reduced import complexity
+- **Clean component structure**: Improved maintainability and readability
 
 ## 🎯 SOLID Principles Implementation
 

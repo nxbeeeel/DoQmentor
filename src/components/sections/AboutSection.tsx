@@ -1,9 +1,7 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Section } from '@/components/ui/Section';
-import { Button } from '@/components/ui/Button';
+import { Section, Button } from '@/components';
 import { COMPANY_INFO, STATS } from '@/constants';
 import { getIconComponent } from '@/utils/iconMapper';
 import { useTheme } from '@/contexts/ThemeContext';

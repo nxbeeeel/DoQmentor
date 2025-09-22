@@ -1,10 +1,9 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import { Section } from '@/components/ui/Section';
+import { Section } from '@/components';
 import { TESTIMONIALS } from '@/constants';
 import { useTheme } from '@/contexts/ThemeContext';
 

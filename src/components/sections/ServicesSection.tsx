@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { SERVICES } from '@/constants';
 import { getIconComponent } from '@/utils/iconMapper';

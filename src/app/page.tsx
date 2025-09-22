@@ -1,10 +1,12 @@
-import { CustomCursor } from '@/components/common/CustomCursor';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { ServicesSection } from '@/components/sections/ServicesSection';
-import { OtherServicesSection } from '@/components/sections/OtherServicesSection';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { AboutSection } from '@/components/sections/AboutSection';
-import { CTASection } from '@/components/sections/CTASection';
+import {
+  CustomCursor,
+  HeroSection,
+  ServicesSection,
+  OtherServicesSection,
+  TestimonialsSection,
+  AboutSection,
+  CTASection
+} from '@/components';
 
 export default function Home() {
   return (

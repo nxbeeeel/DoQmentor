@@ -1,9 +1,7 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
-import { COMPANY_INFO } from '@/constants';
 
 interface LogoProps {
   size?: 'small' | 'medium' | 'large';

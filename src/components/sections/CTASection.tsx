@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components';
 import { COMPANY_INFO } from '@/constants';
 import { useTheme } from '@/contexts/ThemeContext';
 

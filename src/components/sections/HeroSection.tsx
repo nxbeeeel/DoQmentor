@@ -1,11 +1,8 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, ChevronRight } from 'lucide-react';
-import { Logo } from '@/components/common/Logo';
-import { Button } from '@/components/ui/Button';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { ArrowDown } from 'lucide-react';
+import { Logo, ThemeToggle } from '@/components';
 import { useTheme } from '@/contexts/ThemeContext';
 import { COMPANY_INFO } from '@/constants';
 

@@ -1,11 +1,9 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Send } from 'lucide-react';
-import { Section } from '@/components/ui/Section';
-import { Button } from '@/components/ui/Button';
+import { Section, Button } from '@/components';
 import { emailService } from '@/services/emailService';
 import { CONTACT_EMAIL } from '@/constants';
 import { useTheme } from '@/contexts/ThemeContext';
