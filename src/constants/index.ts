@@ -59,36 +59,28 @@ export const SERVICES: Service[] = [
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    id: 'sarah-johnson',
-    name: 'Sarah Johnson',
-    company: 'Global Tech Solutions',
-    image: 'SJ',
+    id: 'prashanth-nair',
+    name: 'Prashanth Nair',
+    company: 'Public Review',
+    image: 'PN',
     rating: 5,
-    text: 'DoQmentor made our international expansion seamless. Their expertise in documentation and licensing saved us months of bureaucratic delays.'
+    text: 'Very Cooperative, Polite and Fast reply. Helps you through the whole process'
   },
   {
-    id: 'michael-chen',
-    name: 'Michael Chen',
-    company: 'Import Export Dynamics',
-    image: 'MC',
+    id: 's',
+    name: 'S',
+    company: 'Public Review',
+    image: 'S',
     rating: 5,
-    text: 'Outstanding service for our import/export licensing needs. Professional, efficient, and incredibly knowledgeable about international regulations.'
+    text: 'I will send to my article on September 11th then getting acceptance in within 35 days thank you inspire solution.'
   },
   {
-    id: 'priya-sharma',
-    name: 'Priya Sharma',
-    company: 'Startup Innovators',
-    image: 'PS',
+    id: 'binty-benzie-alexander',
+    name: 'Binty Benzie Alexander',
+    company: 'Public Review',
+    image: 'BBA',
     rating: 5,
-    text: 'From company registration to trademark protection, DoQmentor handled everything with precision. Highly recommend their comprehensive services.'
-  },
-  {
-    id: 'david-rodriguez',
-    name: 'David Rodriguez',
-    company: 'Manufacturing Plus',
-    image: 'DR',
-    rating: 5,
-    text: 'Their embassy attestation services were flawless. Quick turnaround and excellent communication throughout the entire process.'
+    text: 'Quick and Great Service. Sorted our passport renewal service very smoothly.'
   }
 ];
 
@@ -99,12 +91,12 @@ export const STATS: Stat[] = [
   { id: 'experience', icon: 'Clock', number: '10+', label: 'Years Experience' }
 ];
 
-export const CONTACT_EMAIL = 'nizarinspire@gmail.com';
+export const CONTACT_EMAIL = 'documentor.Com@gmail.com';
 
 export const COMPANY_INFO = {
   name: 'DoQmentor',
   tagline: 'Global Consulting for a Connected World',
   description: 'Empowering your vision with comprehensive international consultancy services.',
-  phone: '+1 (555) 123-4567',
+  phone: '+91 90723 54444',
   email: CONTACT_EMAIL
 };
