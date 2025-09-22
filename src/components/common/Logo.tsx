@@ -1,5 +1,6 @@
 'use client';
 
+import { CSSProperties } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -126,7 +127,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: theme === 'dark' ? 'white' : 'transparent',
               backgroundClip: 'text'
-            }}
+            } as CSSProperties}
           >
             Do<span style={{ color: '#1e40af' }}>Q</span>mentor
           </span>
