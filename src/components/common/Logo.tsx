@@ -12,9 +12,11 @@ interface LogoProps {
   useImage?: boolean; // render public/logo.png if true
 }
 
-export const Logo = ({ size = 'medium', showText = true, className = '', useImage = true }: LogoProps) => {
+export const Logo = ({ size = 'medium', showText = true, className = '', useImage = false }: LogoProps) => {
   const { theme } = useTheme();
   const [imageOk, setImageOk] = useState<boolean>(useImage);
+  const primary = theme === 'dark' ? '#FFFFFF' : '#1e40af';
+  const accent = theme === 'dark' ? 'rgba(255,255,255,0.9)' : '#1e3a8a';
   
   const sizeConfig = {
     small: { svg: 32, text: 'text-lg', spacing: 'space-x-2' },
@@ -58,7 +60,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
             {/* D Letter */}
             <path
               d="M15 20 L15 80 L45 80 C60 80 70 70 70 55 L70 45 C70 30 60 20 45 20 Z M25 30 L40 30 C50 30 55 35 55 45 L55 55 C55 65 50 70 40 70 L25 70 Z"
-              fill="#1e40af"
+              fill={primary}
               className="transition-all duration-300"
               style={{
                 filter: 'drop-shadow(0 2px 8px rgba(30,64,175,0.3))'
@@ -68,7 +70,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
             {/* Q Letter with elegant tail */}
             <path
               d="M75 35 C85 35 90 40 90 50 L90 60 C90 70 85 75 75 75 C65 75 60 70 60 60 L60 50 C60 40 65 35 75 35 Z M75 45 C70 45 68 47 68 50 L68 60 C68 63 70 65 75 65 C80 65 82 63 82 60 L82 50 C82 47 80 45 75 45 Z"
-              fill="#1e40af"
+              fill={primary}
               className="transition-all duration-300"
               style={{
                 filter: 'drop-shadow(0 2px 8px rgba(30,64,175,0.3))'
@@ -78,7 +80,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
             {/* Q Tail - Elegant curved tail */}
             <path
               d="M78 65 L85 72 C87 74 89 74 91 72 C93 70 93 68 91 66 L84 59"
-              stroke="#1e40af"
+              stroke={primary}
               strokeWidth="3"
               strokeLinecap="round"
               fill="none"
@@ -102,7 +104,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
               cy="50"
               r="8"
               fill="none"
-              stroke="rgba(255,255,255,0.2)"
+              stroke={theme === 'dark' ? 'rgba(255,255,255,0.25)' : 'rgba(30,64,175,0.25)'}
               strokeWidth="1.5"
             />
           </svg>
