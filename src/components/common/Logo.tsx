@@ -44,7 +44,12 @@ export const Logo = ({ size = 'medium', showText = true, className = '', useImag
               alt="DoQmentor logo"
               fill
               sizes="(max-width: 80px) 100vw, 80px"
-              style={{ objectFit: 'contain' }}
+              style={{ 
+                objectFit: 'contain',
+                filter: theme === 'dark' 
+                  ? 'drop-shadow(0 0 6px rgba(255,255,255,0.85))' 
+                  : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
+              }}
               priority
               onError={() => setImageOk(false)}
             />
