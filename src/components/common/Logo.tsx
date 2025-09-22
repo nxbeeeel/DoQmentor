@@ -1,6 +1,7 @@
 'use client';
 
 import { CSSProperties } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -8,9 +9,10 @@ interface LogoProps {
   size?: 'small' | 'medium' | 'large';
   showText?: boolean;
   className?: string;
+  useImage?: boolean; // render public/logo.png if true
 }
 
-export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoProps) => {
+export const Logo = ({ size = 'medium', showText = true, className = '', useImage = true }: LogoProps) => {
   const { theme } = useTheme();
   
   const sizeConfig = {
@@ -25,7 +27,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       whileHover={{ scale: 1.05 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
-      {/* Premium DQ Logo - Recreating the elegant design */}
+      {/* Logo mark: prefer image if available */}
       <div className="relative">
         <motion.div 
           className={`relative flex items-center justify-center`}
@@ -33,12 +35,26 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
           whileHover={{ rotate: 5 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
+          {useImage ? (
+            <Image
+              src="/logo.png"
+              alt="DoQmentor logo"
+              fill
+              sizes="(max-width: 80px) 100vw, 80px"
+              style={{ objectFit: 'contain' }}
+              priority
+              onError={(e) => {
+                // If image is missing, do nothing here; SVG fallback below will still render behind due to absolute fill
+              }}
+            />
+          ) : null}
           {/* Main DQ Logo SVG Recreation */}
           <svg 
             width={sizeConfig[size].svg} 
             height={sizeConfig[size].svg} 
             viewBox="0 0 100 100" 
             className="drop-shadow-lg"
+            style={{ display: useImage ? 'none' : 'block' }}
           >
             {/* D Letter */}
             <path
