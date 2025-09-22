@@ -12,7 +12,7 @@ interface LogoProps {
   useImage?: boolean; // render public/logo.png if true
 }
 
-export const Logo = ({ size = 'medium', showText = true, className = '', useImage = false }: LogoProps) => {
+export const Logo = ({ size = 'medium', showText = true, className = '', useImage = true }: LogoProps) => {
   const { theme } = useTheme();
   const [imageOk, setImageOk] = useState<boolean>(useImage);
   const primary = theme === 'dark' ? '#FFFFFF' : '#1e40af';
