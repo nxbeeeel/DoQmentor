@@ -9,6 +9,9 @@ import { useTheme } from '@/contexts/ThemeContext';
 export const CTASection = () => {
   const { theme } = useTheme();
   
+  const telHref = `tel:${COMPANY_INFO.phone.replace(/\s|\(|\)|-/g, '')}`;
+  const mailHref = `mailto:${COMPANY_INFO.email}`;
+  
   return (
     <section 
       className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6"
@@ -54,14 +57,14 @@ export const CTASection = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center text-blue-100">
-            <div className="flex items-center gap-3">
+            <a href={telHref} className="flex items-center gap-3 hover:underline focus:underline">
               <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="text-sm sm:text-base">{COMPANY_INFO.phone}</span>
-            </div>
-            <div className="flex items-center gap-3">
+            </a>
+            <a href={mailHref} className="flex items-center gap-3 hover:underline focus:underline">
               <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="text-sm sm:text-base">{COMPANY_INFO.email}</span>
-            </div>
+            </a>
           </div>
         </motion.div>
       </div>
