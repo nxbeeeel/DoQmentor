@@ -1,0 +1,35 @@
+language: en
+review:
+  require_description: true
+  max_files: 200
+  max_lines: 3000
+rules:
+  - name: Typescript/Next.js best practices
+    checks:
+      - no-any
+      - no-implicit-any
+      - prefer-const
+      - exhaustive-deps
+      - next-app-router-conventions
+      - client-vs-server-components
+  - name: Security
+    checks:
+      - no-secrets
+      - dependency-audit
+  - name: Performance/Bundle
+    checks:
+      - tree-shaking
+      - dynamic-imports
+      - avoid-large-deps
+ignore:
+  paths:
+    - node_modules/**
+    - .next/**
+    - out/**
+    - dist/**
+behavior:
+  approve_small_changes: true
+  request_changes_on_critical_issues: true
+  leave_inline_comments: true
+
+
