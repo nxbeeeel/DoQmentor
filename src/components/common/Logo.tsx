@@ -14,24 +14,34 @@ interface LogoProps {
 export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoProps) => {
   const { theme } = useTheme();
   
+  // Responsive sizes with mobile-first approach
   const sizeConfig = {
     small: { 
-      logo: 60, 
-      text: 'text-2xl', 
-      spacing: 'gap-0.5',
-      containerHeight: 'h-14'
+      logoMobile: 36,
+      logoTablet: 48,
+      logoDesktop: 60,
+      textMobile: 'text-lg',
+      textTablet: 'text-xl',
+      textDesktop: 'text-2xl',
+      spacing: 'gap-1 sm:gap-1.5',
     },
     medium: { 
-      logo: 100, 
-      text: 'text-4xl', 
-      spacing: 'gap-1',
-      containerHeight: 'h-20'
+      logoMobile: 50,
+      logoTablet: 70,
+      logoDesktop: 100,
+      textMobile: 'text-2xl',
+      textTablet: 'text-3xl',
+      textDesktop: 'text-4xl',
+      spacing: 'gap-1.5 sm:gap-2',
     },
     large: { 
-      logo: 160, 
-      text: 'text-6xl', 
-      spacing: 'gap-1',
-      containerHeight: 'h-28'
+      logoMobile: 60,
+      logoTablet: 100,
+      logoDesktop: 160,
+      textMobile: 'text-3xl',
+      textTablet: 'text-5xl',
+      textDesktop: 'text-6xl',
+      spacing: 'gap-1.5 sm:gap-2 lg:gap-2',
     }
   };
   
@@ -43,19 +53,34 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
-      {/* Logo Image */}
+      {/* Logo Image - Responsive */}
       <motion.div 
-        className={`relative flex items-center justify-center ${config.containerHeight}`}
-        style={{ width: config.logo, height: config.logo }}
+        className="relative flex items-center justify-center flex-shrink-0"
         whileHover={{ rotate: 3 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
+        {/* Mobile Logo */}
         <Image
           src="/logo.png"
           alt="DoQmentor logo"
-          width={config.logo}
-          height={config.logo}
-          className="object-contain"
+          width={config.logoMobile}
+          height={config.logoMobile}
+          className="object-contain block sm:hidden"
+          style={{ 
+            filter: theme === 'dark' 
+              ? 'brightness(0) invert(1) drop-shadow(0 0 6px rgba(255,255,255,0.3))' 
+              : 'drop-shadow(0 2px 6px rgba(0,0,0,0.15))',
+          }}
+          priority
+        />
+        
+        {/* Tablet Logo */}
+        <Image
+          src="/logo.png"
+          alt="DoQmentor logo"
+          width={config.logoTablet}
+          height={config.logoTablet}
+          className="object-contain hidden sm:block lg:hidden"
           style={{ 
             filter: theme === 'dark' 
               ? 'brightness(0) invert(1) drop-shadow(0 0 8px rgba(255,255,255,0.3))' 
@@ -63,18 +88,33 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
           }}
           priority
         />
+        
+        {/* Desktop Logo */}
+        <Image
+          src="/logo.png"
+          alt="DoQmentor logo"
+          width={config.logoDesktop}
+          height={config.logoDesktop}
+          className="object-contain hidden lg:block"
+          style={{ 
+            filter: theme === 'dark' 
+              ? 'brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,0.3))' 
+              : 'drop-shadow(0 2px 10px rgba(0,0,0,0.15))',
+          }}
+          priority
+        />
       </motion.div>
       
-      {/* Company Name */}
+      {/* Company Name - Responsive */}
       {showText && (
         <motion.div
-          className="flex flex-col justify-center"
+          className="flex flex-col justify-center min-w-0"
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <span 
-            className={`${config.text} font-bold leading-none transition-colors duration-500 ${
+            className={`${config.textMobile} sm:${config.textTablet} lg:${config.textDesktop} font-bold leading-none transition-colors duration-500 whitespace-nowrap ${
               theme === 'dark' ? 'text-white' : 'text-gray-800'
             }`} 
             style={{
