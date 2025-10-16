@@ -23,7 +23,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       textMobile: 'text-xl',
       textTablet: 'text-xl',
       textDesktop: 'text-2xl',
-      spacingMobile: 'gap-0.5',
+      spacingMobile: 'gap-0',
       spacingDesktop: 'gap-0.5',
     },
     medium: { 
@@ -33,7 +33,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       textMobile: 'text-3xl',
       textTablet: 'text-3xl',
       textDesktop: 'text-4xl',
-      spacingMobile: 'gap-0.5',
+      spacingMobile: 'gap-0',
       spacingDesktop: 'gap-1',
     },
     large: { 
@@ -43,7 +43,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       textMobile: 'text-4xl',
       textTablet: 'text-5xl',
       textDesktop: 'text-6xl',
-      spacingMobile: 'gap-0.5',
+      spacingMobile: 'gap-0',
       spacingDesktop: 'gap-1',
     }
   };
