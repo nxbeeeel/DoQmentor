@@ -14,34 +14,37 @@ interface LogoProps {
 export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoProps) => {
   const { theme } = useTheme();
   
-  // Responsive sizes with mobile-first approach - Vertical layout for all devices
+  // Responsive sizes: Mobile = vertical stack, Desktop = horizontal row
   const sizeConfig = {
     small: { 
-      logoMobile: 42,
-      logoTablet: 48,
+      logoMobile: 50,
+      logoTablet: 50,
       logoDesktop: 60,
-      textMobile: 'text-lg',
+      textMobile: 'text-xl',
       textTablet: 'text-xl',
       textDesktop: 'text-2xl',
-      spacing: 'gap-1 sm:gap-2',
+      spacingMobile: 'gap-1',
+      spacingDesktop: 'gap-1',
     },
     medium: { 
-      logoMobile: 60,
-      logoTablet: 70,
+      logoMobile: 70,
+      logoTablet: 80,
       logoDesktop: 100,
-      textMobile: 'text-2xl',
+      textMobile: 'text-3xl',
       textTablet: 'text-3xl',
       textDesktop: 'text-4xl',
-      spacing: 'gap-2 sm:gap-3',
+      spacingMobile: 'gap-1.5',
+      spacingDesktop: 'gap-1.5',
     },
     large: { 
-      logoMobile: 80,
-      logoTablet: 110,
+      logoMobile: 100,
+      logoTablet: 120,
       logoDesktop: 160,
       textMobile: 'text-4xl',
       textTablet: 'text-5xl',
       textDesktop: 'text-6xl',
-      spacing: 'gap-2 sm:gap-3 lg:gap-4',
+      spacingMobile: 'gap-1.5',
+      spacingDesktop: 'gap-2',
     }
   };
   
@@ -49,7 +52,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
   
   return (
     <motion.div 
-      className={`flex flex-col items-center justify-center ${config.spacing} ${className}`}
+      className={`flex flex-col lg:flex-row items-center justify-center ${config.spacingMobile} lg:${config.spacingDesktop} ${className}`}
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
@@ -108,13 +111,13 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       {/* Company Name - Responsive */}
       {showText && (
         <motion.div
-          className="flex flex-col items-center justify-center"
+          className="flex flex-col items-center lg:items-start justify-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <span 
-            className={`${config.textMobile} sm:${config.textTablet} lg:${config.textDesktop} font-bold leading-none transition-colors duration-500 whitespace-nowrap text-center ${
+            className={`${config.textMobile} lg:${config.textDesktop} font-bold leading-none transition-colors duration-500 whitespace-nowrap text-center lg:text-left ${
               theme === 'dark' ? 'text-white' : 'text-gray-800'
             }`} 
             style={{
