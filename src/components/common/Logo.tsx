@@ -17,8 +17,8 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
   // Responsive sizes: Mobile = vertical stack, Desktop = horizontal row
   const sizeConfig = {
     small: { 
-      logoMobile: 50,
-      logoTablet: 50,
+      logoMobile: 60,
+      logoTablet: 60,
       logoDesktop: 60,
       textMobile: 'text-xl',
       textTablet: 'text-xl',
@@ -27,8 +27,8 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       spacingDesktop: 'gap-0.5',
     },
     medium: { 
-      logoMobile: 70,
-      logoTablet: 80,
+      logoMobile: 90,
+      logoTablet: 90,
       logoDesktop: 100,
       textMobile: 'text-3xl',
       textTablet: 'text-3xl',
@@ -37,10 +37,10 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       spacingDesktop: 'gap-1',
     },
     large: { 
-      logoMobile: 100,
-      logoTablet: 120,
+      logoMobile: 150,
+      logoTablet: 140,
       logoDesktop: 160,
-      textMobile: 'text-4xl',
+      textMobile: 'text-5xl',
       textTablet: 'text-5xl',
       textDesktop: 'text-6xl',
       spacingMobile: 'gap-0',
