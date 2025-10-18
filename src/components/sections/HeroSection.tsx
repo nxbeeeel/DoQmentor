@@ -121,7 +121,7 @@ export const HeroSection = () => {
       <ThemeToggle />
 
       {/* Navigation */}
-      <nav className="absolute top-2 left-0 right-0 z-20 flex justify-center items-center p-2 lg:p-8">
+      <nav className="absolute top-1 left-0 right-0 z-20 flex justify-center items-center p-1 lg:p-4">
         <div className="w-full max-w-7xl mx-auto flex justify-center">
           <Logo size="large" />
         </div>

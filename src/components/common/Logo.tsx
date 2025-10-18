@@ -38,11 +38,11 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
     },
     large: { 
       logoMobile: 150,
-      logoTablet: 140,
-      logoDesktop: 160,
+      logoTablet: 160,
+      logoDesktop: 200,
       textMobile: 'text-5xl',
-      textTablet: 'text-5xl',
-      textDesktop: 'text-6xl',
+      textTablet: 'text-6xl',
+      textDesktop: 'text-7xl',
       spacingMobile: 'gap-0',
       spacingDesktop: 'gap-1',
     }
