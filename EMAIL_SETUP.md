@@ -19,11 +19,11 @@ To enable email functionality, you need to set up Gmail App Password:
 Create a file named `.env.local` in the project root with:
 
 ```env
-GMAIL_USER=your-personal-email@gmail.com
+GMAIL_USER=doqmentor.com@gmail.com
 GMAIL_APP_PASSWORD=your-16-digit-app-password-here
 ```
 
-**Note:** Use your **personal Gmail** address. Emails will be sent to this same Gmail account.
+**Note:** Emails will be sent to **doqmentor.com@gmail.com**
 
 ### Step 4: Add to Vercel
 For production deployment on Vercel:
@@ -31,7 +31,7 @@ For production deployment on Vercel:
 1. Go to your project on [Vercel Dashboard](https://vercel.com/dashboard)
 2. Go to **Settings** → **Environment Variables**
 3. Add these variables:
-   - `GMAIL_USER` = `your-personal-email@gmail.com`
+   - `GMAIL_USER` = `doqmentor.com@gmail.com`
    - `GMAIL_APP_PASSWORD` = `your-16-digit-app-password`
 4. Redeploy your project
 
@@ -53,7 +53,7 @@ npm run dev
 1. User fills the contact form
 2. Form data is sent to `/api/send-email`
 3. Server uses nodemailer to send email via Gmail
-4. You receive a beautifully formatted email at **your personal Gmail**
+4. You receive a beautifully formatted email at **doqmentor.com@gmail.com**
 5. You can reply directly to the customer's email
 
 ## Email Format
