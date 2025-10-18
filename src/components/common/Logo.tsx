@@ -17,32 +17,32 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
   // Responsive sizes: Mobile = vertical stack, Desktop = horizontal row
   const sizeConfig = {
     small: { 
-      logoMobile: 60,
-      logoTablet: 60,
-      logoDesktop: 60,
-      textMobile: 'text-xl',
-      textTablet: 'text-xl',
-      textDesktop: 'text-2xl',
+      logoMobile: 80,
+      logoTablet: 80,
+      logoDesktop: 80,
+      textMobile: 'text-2xl',
+      textTablet: 'text-2xl',
+      textDesktop: 'text-3xl',
       spacingMobile: 'gap-0',
       spacingDesktop: 'gap-0.5',
     },
     medium: { 
-      logoMobile: 90,
-      logoTablet: 90,
-      logoDesktop: 100,
-      textMobile: 'text-3xl',
-      textTablet: 'text-3xl',
-      textDesktop: 'text-4xl',
+      logoMobile: 120,
+      logoTablet: 120,
+      logoDesktop: 140,
+      textMobile: 'text-4xl',
+      textTablet: 'text-4xl',
+      textDesktop: 'text-5xl',
       spacingMobile: 'gap-0',
       spacingDesktop: 'gap-1',
     },
     large: { 
-      logoMobile: 150,
-      logoTablet: 160,
-      logoDesktop: 200,
-      textMobile: 'text-5xl',
-      textTablet: 'text-6xl',
-      textDesktop: 'text-7xl',
+      logoMobile: 180,
+      logoTablet: 220,
+      logoDesktop: 280,
+      textMobile: 'text-6xl',
+      textTablet: 'text-7xl',
+      textDesktop: 'text-8xl',
       spacingMobile: 'gap-0',
       spacingDesktop: 'gap-1',
     }
@@ -111,7 +111,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       {/* Company Name - Responsive */}
       {showText && (
         <motion.div
-          className="flex flex-col items-center justify-center -mt-12"
+          className="flex flex-col items-center justify-center -mt-16 sm:-mt-20 lg:-mt-24"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}

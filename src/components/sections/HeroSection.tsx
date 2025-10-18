@@ -121,14 +121,14 @@ export const HeroSection = () => {
       <ThemeToggle />
 
       {/* Navigation */}
-      <nav className="absolute top-1 left-0 right-0 z-20 flex justify-center items-center p-1 lg:p-4">
+      <nav className="absolute top-0 left-0 right-0 z-20 flex justify-center items-center p-0 lg:p-0">
         <div className="w-full max-w-7xl mx-auto flex justify-center">
           <Logo size="large" />
         </div>
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto text-center z-10 pt-32 lg:pt-40">
+      <div className="max-w-4xl mx-auto text-center z-10 pt-48 sm:pt-56 lg:pt-64">
         <motion.h1 
           className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-6 lg:mb-8 text-center leading-tight px-4 transition-colors duration-500 ${
             theme === 'dark' ? 'text-white' : 'text-gray-800'
