@@ -52,7 +52,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
   
   return (
     <motion.div 
-      className={`flex flex-col lg:flex-row items-center justify-center ${config.spacingMobile} lg:${config.spacingDesktop} ${className}`}
+      className={`flex flex-col items-center justify-center ${config.spacingMobile} ${className}`}
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
@@ -111,13 +111,13 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       {/* Company Name - Responsive */}
       {showText && (
         <motion.div
-          className="flex flex-col items-center lg:items-start justify-center -mt-12 lg:mt-0"
+          className="flex flex-col items-center justify-center -mt-12"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <span 
-            className={`${config.textMobile} lg:${config.textDesktop} font-bold leading-none transition-colors duration-500 whitespace-nowrap text-center lg:text-left ${
+            className={`${config.textMobile} lg:${config.textDesktop} font-bold leading-none transition-colors duration-500 whitespace-nowrap text-center ${
               theme === 'dark' ? 'text-white' : 'text-gray-800'
             }`} 
             style={{

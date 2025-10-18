@@ -130,7 +130,7 @@ export const HeroSection = () => {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto text-center z-10 pt-32 lg:pt-40">
         <motion.h1 
-          className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 lg:mb-8 text-center leading-tight px-4 transition-colors duration-500 ${
+          className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-6 lg:mb-8 text-center leading-tight px-4 transition-colors duration-500 ${
             theme === 'dark' ? 'text-white' : 'text-gray-800'
           }`}
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
