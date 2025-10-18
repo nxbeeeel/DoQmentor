@@ -22,10 +22,10 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Email content
+    // Email content - Send to your personal Gmail
     const mailOptions = {
       from: process.env.GMAIL_USER,
-      to: 'documentor.Com@gmail.com', // Your Gmail
+      to: process.env.GMAIL_USER, // Send to your own Gmail
       subject: `New Service Request from ${name} - DoQmentor`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
