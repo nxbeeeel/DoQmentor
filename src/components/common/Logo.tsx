@@ -111,7 +111,7 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
       {/* Company Name - Responsive */}
       {showText && (
         <motion.div
-          className="flex flex-col items-center lg:items-start justify-center -mt-2 lg:mt-0"
+          className="flex flex-col items-center lg:items-start justify-center -mt-8 lg:mt-0"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
