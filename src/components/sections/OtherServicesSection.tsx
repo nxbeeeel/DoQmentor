@@ -26,14 +26,22 @@ export const OtherServicesSection = () => {
     setIsSubmitting(true);
     
     try {
-      const subject = 'Service Request - DoQmentor';
-      const body = `Service Request Details:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`;
+      const success = await emailService.sendContactEmail({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+      });
       
-      await emailService.sendEmail(CONTACT_EMAIL, subject, body);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      if (success) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        alert('Failed to send email. Please try again.');
+      }
     } catch (error) {
       console.error('Error sending request:', error);
+      alert('An error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

@@ -1,19 +1,29 @@
-import { EmailService } from '@/types';
+export interface ContactFormData {
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+}
 
-export class MailtoEmailService implements EmailService {
-  async sendEmail(to: string, subject: string, body: string): Promise<boolean> {
+export const emailService = {
+  async sendContactEmail(data: ContactFormData): Promise<boolean> {
     try {
-      const encodedSubject = encodeURIComponent(subject);
-      const encodedBody = encodeURIComponent(body);
-      const mailtoLink = `mailto:${to}?subject=${encodedSubject}&body=${encodedBody}`;
-      
-      window.location.href = mailtoLink;
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
       return true;
     } catch (error) {
-      console.error('Error opening email client:', error);
+      console.error('Error sending email:', error);
       return false;
     }
   }
-}
-
-export const emailService = new MailtoEmailService();
+};
