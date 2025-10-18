@@ -52,13 +52,15 @@ export const Logo = ({ size = 'medium', showText = true, className = '' }: LogoP
   
   return (
     <motion.div 
-      className={`flex flex-col items-center justify-center ${config.spacingMobile} ${className}`}
+      className={`flex flex-col items-center justify-start ${config.spacingMobile} ${className}`}
+      style={{ marginTop: '-20px' }}
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       {/* Logo Image - Responsive */}
       <motion.div 
-        className="relative flex items-center justify-center flex-shrink-0"
+        className="relative flex items-start justify-center flex-shrink-0"
+        style={{ marginTop: '-10px' }}
         whileHover={{ rotate: 3 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
