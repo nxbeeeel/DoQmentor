@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Star, Send, MessageSquare } from 'lucide-react';
+import { Star, Send, MessageSquare, Trash2 } from 'lucide-react';
 
 interface Review {
     id: string;
@@ -19,46 +19,78 @@ export const CustomerReviewSection = () => {
     const [hoverRating, setHoverRating] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [deletingId, setDeletingId] = useState<string | null>(null);
 
+    // Fetch reviews from server on mount
     useEffect(() => {
-        const savedReviews = localStorage.getItem('doqmentor_reviews');
-        if (savedReviews) {
-            setReviews(JSON.parse(savedReviews));
-        }
+        fetchReviews();
     }, []);
 
-    const saveReviews = (newReviews: Review[]) => {
-        localStorage.setItem('doqmentor_reviews', JSON.stringify(newReviews));
-        setReviews(newReviews);
+    const fetchReviews = async () => {
+        try {
+            const response = await fetch('/api/reviews');
+            if (response.ok) {
+                const data = await response.json();
+                setReviews(data);
+            }
+        } catch (error) {
+            console.error('Error fetching reviews:', error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.name.trim() || !formData.review.trim() || rating === 0) return;
 
         setIsSubmitting(true);
 
-        setTimeout(() => {
-            const newReview: Review = {
-                id: Date.now().toString(),
-                name: formData.name.trim(),
-                rating,
-                review: formData.review.trim(),
-                date: new Date().toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
+        try {
+            const response = await fetch('/api/reviews', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name.trim(),
+                    rating,
+                    review: formData.review.trim(),
                 }),
-            };
+            });
 
-            saveReviews([newReview, ...reviews]);
-            setFormData({ name: '', review: '' });
-            setRating(0);
+            if (response.ok) {
+                const newReview = await response.json();
+                setReviews([newReview, ...reviews]);
+                setFormData({ name: '', review: '' });
+                setRating(0);
+                setShowSuccess(true);
+                setTimeout(() => setShowSuccess(false), 3000);
+            }
+        } catch (error) {
+            console.error('Error submitting review:', error);
+        } finally {
             setIsSubmitting(false);
-            setShowSuccess(true);
+        }
+    };
 
-            setTimeout(() => setShowSuccess(false), 3000);
-        }, 500);
+    const handleDelete = async (id: string) => {
+        if (!confirm('Are you sure you want to delete this review?')) return;
+
+        setDeletingId(id);
+
+        try {
+            const response = await fetch(`/api/reviews?id=${id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                setReviews(reviews.filter(r => r.id !== id));
+            }
+        } catch (error) {
+            console.error('Error deleting review:', error);
+        } finally {
+            setDeletingId(null);
+        }
     };
 
     return (
@@ -217,7 +249,12 @@ export const CustomerReviewSection = () => {
                         </h3>
 
                         <div className="space-y-3 sm:space-y-4 max-h-[400px] sm:max-h-[500px] overflow-y-auto pr-2">
-                            {reviews.length === 0 ? (
+                            {isLoading ? (
+                                <div className="card p-6 sm:p-8 text-center">
+                                    <div className="w-6 h-6 border-2 border-accent/30 border-t-accent rounded-full animate-spin mx-auto mb-3" />
+                                    <p className="text-sm text-surface-500">Loading reviews...</p>
+                                </div>
+                            ) : reviews.length === 0 ? (
                                 <div className="card p-6 sm:p-8 text-center">
                                     <MessageSquare className="w-8 h-8 sm:w-10 sm:h-10 text-surface-600 mx-auto mb-3" />
                                     <p className="text-sm sm:text-base text-surface-500">
@@ -225,46 +262,65 @@ export const CustomerReviewSection = () => {
                                     </p>
                                 </div>
                             ) : (
-                                reviews.map((review) => (
-                                    <motion.div
-                                        key={review.id}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        className="card p-4 sm:p-5"
-                                    >
-                                        <div className="flex items-start justify-between mb-2 sm:mb-3">
-                                            <div className="flex items-center gap-2 sm:gap-3">
-                                                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-accent/20 flex items-center justify-center text-xs sm:text-sm font-medium text-accent-light">
-                                                    {review.name.charAt(0).toUpperCase()}
+                                <AnimatePresence>
+                                    {reviews.map((review) => (
+                                        <motion.div
+                                            key={review.id}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, x: -20, height: 0 }}
+                                            className="card p-4 sm:p-5 group"
+                                        >
+                                            <div className="flex items-start justify-between mb-2 sm:mb-3">
+                                                <div className="flex items-center gap-2 sm:gap-3">
+                                                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-accent/20 flex items-center justify-center text-xs sm:text-sm font-medium text-accent-light">
+                                                        {review.name.charAt(0).toUpperCase()}
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-medium text-white text-sm">
+                                                            {review.name}
+                                                        </div>
+                                                        <div className="text-xs text-surface-500">
+                                                            {review.date}
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <div className="font-medium text-white text-sm">
-                                                        {review.name}
+
+                                                <div className="flex items-center gap-2">
+                                                    <div className="flex gap-0.5">
+                                                        {[...Array(5)].map((_, i) => (
+                                                            <Star
+                                                                key={i}
+                                                                className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${i < review.rating
+                                                                        ? 'text-amber-400 fill-amber-400'
+                                                                        : 'text-surface-700'
+                                                                    }`}
+                                                            />
+                                                        ))}
                                                     </div>
-                                                    <div className="text-xs text-surface-500">
-                                                        {review.date}
-                                                    </div>
+
+                                                    {/* Delete Button */}
+                                                    <button
+                                                        onClick={() => handleDelete(review.id)}
+                                                        disabled={deletingId === review.id}
+                                                        className="opacity-0 group-hover:opacity-100 p-1.5 rounded-md hover:bg-red-500/10 text-surface-500 hover:text-red-400 transition-all disabled:opacity-50"
+                                                        aria-label="Delete review"
+                                                    >
+                                                        {deletingId === review.id ? (
+                                                            <div className="w-3.5 h-3.5 border-2 border-red-400/30 border-t-red-400 rounded-full animate-spin" />
+                                                        ) : (
+                                                            <Trash2 className="w-3.5 h-3.5" />
+                                                        )}
+                                                    </button>
                                                 </div>
                                             </div>
 
-                                            <div className="flex gap-0.5">
-                                                {[...Array(5)].map((_, i) => (
-                                                    <Star
-                                                        key={i}
-                                                        className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${i < review.rating
-                                                                ? 'text-amber-400 fill-amber-400'
-                                                                : 'text-surface-700'
-                                                            }`}
-                                                    />
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <p className="text-xs sm:text-sm text-surface-400 leading-relaxed">
-                                            {review.review}
-                                        </p>
-                                    </motion.div>
-                                ))
+                                            <p className="text-xs sm:text-sm text-surface-400 leading-relaxed">
+                                                {review.review}
+                                            </p>
+                                        </motion.div>
+                                    ))}
+                                </AnimatePresence>
                             )}
                         </div>
                     </motion.div>
