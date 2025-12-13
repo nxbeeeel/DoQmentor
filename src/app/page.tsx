@@ -1,22 +1,22 @@
 import {
-  CustomCursor,
   HeroSection,
   ServicesSection,
   OtherServicesSection,
   TestimonialsSection,
+  CustomerReviewSection,
   AboutSection,
   CTASection
 } from '@/components';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <CustomCursor />
+    <main className="min-h-screen bg-dark-600">
       <HeroSection />
       <ServicesSection />
-      <OtherServicesSection />
-      <TestimonialsSection />
       <AboutSection />
+      <TestimonialsSection />
+      <CustomerReviewSection />
+      <OtherServicesSection />
       <CTASection />
     </main>
   );

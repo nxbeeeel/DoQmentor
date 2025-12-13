@@ -2,13 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import { Section } from '@/components';
+import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { TESTIMONIALS } from '@/constants';
-import { useTheme } from '@/contexts/ThemeContext';
 
 export const TestimonialsSection = () => {
-  const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextTestimonial = () => {
@@ -20,94 +17,102 @@ export const TestimonialsSection = () => {
   };
 
   return (
-    <section 
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 relative overflow-hidden"
-      style={{
-        background: theme === 'dark' 
-          ? '#1e3a8a'
-          : '#87CEEB'
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6" style={{textShadow: '0 4px 20px rgba(0,0,0,0.3)'}}>
-          What Our <span className={theme === 'dark' ? 'text-blue-200' : 'text-teal-200'}>Clients Say</span>
-        </h2>
-        <p className={`text-lg sm:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto ${theme === 'dark' ? 'text-blue-100' : 'text-teal-100'}`} style={{textShadow: '0 2px 10px rgba(0,0,0,0.2)'}}>
-          Trusted by businesses worldwide for exceptional consultancy services.
-        </p>
-      </motion.div>
+    <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 bg-surface-950">
+      <div className="section-glow opacity-40" />
 
-      <div className="max-w-4xl mx-auto relative px-4">
+      <div className="max-w-4xl mx-auto relative z-10">
+        {/* Header */}
         <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl p-6 sm:p-8 h-full flex flex-col" style={{background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.2)', boxShadow: '0 8px 32px rgba(0,0,0,0.1)'}}
+          viewport={{ once: true }}
+          className="text-center mb-10 sm:mb-16"
         >
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-shrink-0">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-royal-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                {TESTIMONIALS[currentIndex].image}
-              </div>
-            </div>
-            
-            <div className="flex-1 text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                {[...Array(TESTIMONIALS[currentIndex].rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              
-              <p className={`text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed italic ${theme === 'dark' ? 'text-blue-100' : 'text-teal-100'}`}>
-                "{TESTIMONIALS[currentIndex].text}"
-              </p>
-              
-              <div className="text-white font-semibold text-base sm:text-lg mb-1">
-                {TESTIMONIALS[currentIndex].name}
-              </div>
-              <div className={`text-sm sm:text-base ${theme === 'dark' ? 'text-blue-200' : 'text-teal-200'}`}>
-                {TESTIMONIALS[currentIndex].company}
-              </div>
-            </div>
-          </div>
+          <span className="badge mb-4 sm:mb-6">Testimonials</span>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-4 sm:mb-6">
+            <span className="text-white">What our </span>
+            <span className="text-gradient-accent">clients say</span>
+          </h2>
         </motion.div>
 
-        {/* Navigation buttons */}
-        <button
-          onClick={prevTestimonial}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-300"
-        >
-          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-        </button>
-        
-        <button
-          onClick={nextTestimonial}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-300"
-        >
-          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-        </button>
+        {/* Testimonial Card */}
+        <div className="relative">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.4 }}
+            className="card p-6 sm:p-8 md:p-12"
+          >
+            {/* Quote Icon */}
+            <Quote className="w-8 h-8 sm:w-10 sm:h-10 text-accent/20 mb-4 sm:mb-6" />
 
-        {/* Dots indicator */}
-        <div className="flex justify-center items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
-          {TESTIMONIALS.map((_, index) => (
+            {/* Stars */}
+            <div className="flex gap-1 mb-4 sm:mb-6">
+              {[...Array(TESTIMONIALS[currentIndex].rating)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 fill-amber-400" />
+              ))}
+            </div>
+
+            {/* Quote */}
+            <p className="text-base sm:text-lg md:text-xl text-surface-200 mb-6 sm:mb-8 leading-relaxed">
+              "{TESTIMONIALS[currentIndex].text}"
+            </p>
+
+            {/* Author */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent/20 flex items-center justify-center text-sm sm:text-base text-accent-light font-medium">
+                {TESTIMONIALS[currentIndex].image}
+              </div>
+              <div>
+                <div className="font-medium text-white text-sm sm:text-base">
+                  {TESTIMONIALS[currentIndex].name}
+                </div>
+                <div className="text-xs sm:text-sm text-surface-500">
+                  {TESTIMONIALS[currentIndex].company}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Navigation - Mobile Friendly */}
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
             <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors duration-300 ${
-                index === currentIndex ? 'bg-royal-blue' : 'bg-gray-300'
-              }`}
-            />
-          ))}
+              onClick={prevTestimonial}
+              className="w-10 h-10 rounded-full border border-surface-700 flex items-center justify-center hover:bg-surface-800 transition-colors"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="w-5 h-5 text-surface-400" />
+            </button>
+
+            <div className="flex gap-2">
+              {TESTIMONIALS.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${index === currentIndex
+                      ? 'bg-accent w-6'
+                      : 'bg-surface-700 hover:bg-surface-600'
+                    }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={nextTestimonial}
+              className="w-10 h-10 rounded-full border border-surface-700 flex items-center justify-center hover:bg-surface-800 transition-colors"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="w-5 h-5 text-surface-400" />
+            </button>
+          </div>
         </div>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 divider" />
     </section>
   );
 };

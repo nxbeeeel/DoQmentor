@@ -91,7 +91,7 @@ export const STATS: Stat[] = [
   { id: 'experience', icon: 'Clock', number: '10+', label: 'Years Experience' }
 ];
 
-export const CONTACT_EMAIL = 'documentor.Com@gmail.com';
+export const CONTACT_EMAIL = 'doqmentor.com@gmail.com';
 
 export const COMPANY_INFO = {
   name: 'DoQmentor',

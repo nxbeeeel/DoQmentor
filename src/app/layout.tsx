@@ -3,11 +3,16 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  title: 'DoQmentor - Global Business Consulting',
-  description: 'Empowering your vision with comprehensive global consulting services for documentation, licensing, and business expansion.',
+  title: 'DoQmentor — Premium Global Business Consulting',
+  description: 'Empowering your vision with world-class global consulting services. Documentation, licensing, and business expansion for 500+ clients worldwide.',
+  keywords: 'business consulting, global consulting, documentation, licensing, company registration, trademark, international business',
 }
 
 export default function RootLayout({
@@ -16,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" data-theme="dark" style={{ colorScheme: 'light !important' }}>
-      <body className={inter.className} style={{ colorScheme: 'light !important', background: '#1e3a8a !important' }}>
+    <html lang="en" className={inter.variable}>
+      <body className="font-sans antialiased">
         <ThemeProvider>
           {children}
         </ThemeProvider>

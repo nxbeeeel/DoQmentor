@@ -2,70 +2,84 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
-import { Button } from '@/components';
 import { COMPANY_INFO } from '@/constants';
-import { useTheme } from '@/contexts/ThemeContext';
 
 export const CTASection = () => {
-  const { theme } = useTheme();
-  
   const telHref = `tel:${COMPANY_INFO.phone.replace(/\s|\(|\)|-/g, '')}`;
   const mailHref = `mailto:${COMPANY_INFO.email}`;
-  
+
   return (
-    <section 
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6"
-      style={{
-        background: theme === 'dark' 
-          ? '#1e3a8a'
-          : '#87CEEB'
-      }}
-    >
-      <div className="max-w-4xl mx-auto text-center px-4">
+    <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 bg-surface-950 overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
+
+      <div className="max-w-4xl mx-auto relative z-10 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            Ready to Expand Your <span className={theme === 'dark' ? 'text-blue-200' : 'text-teal-200'}>Global Reach?</span>
+          <span className="badge mb-4 sm:mb-6">Get Started</span>
+
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4 sm:mb-6 px-2">
+            <span className="text-white">Ready to expand your </span>
+            <span className="text-gradient-accent">global reach?</span>
           </h2>
-          
-          <p className={`text-lg sm:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed ${theme === 'dark' ? 'text-blue-100' : 'text-teal-100'}`}>
-            Let's discuss how {COMPANY_INFO.name} can help you navigate the complexities of international business 
-            and unlock new opportunities for growth.
+
+          <p className="text-base sm:text-lg text-surface-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
+            Let's discuss how {COMPANY_INFO.name} can help you navigate international business
+            and unlock new growth opportunities.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12">
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-royal-blue px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 transition-all duration-300 flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center"
-            >
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-10 sm:mb-12 px-4">
+            <button className="btn btn-primary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4">
               Schedule a Consultation
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-white hover:text-royal-blue transition-all duration-300 w-full sm:w-auto"
+              <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+              className="btn btn-secondary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4"
             >
-              View Our Services
-            </motion.button>
+              View Services
+            </button>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center text-blue-100">
-            <a href={telHref} className="flex items-center gap-3 hover:underline focus:underline">
-              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="text-sm sm:text-base">{COMPANY_INFO.phone}</span>
+          {/* Contact Info - Mobile Stacked */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center text-surface-400">
+            <a
+              href={telHref}
+              className="flex items-center gap-2 hover:text-white transition-colors text-sm sm:text-base"
+            >
+              <Phone className="w-4 h-4" />
+              <span>{COMPANY_INFO.phone}</span>
             </a>
-            <a href={mailHref} className="flex items-center gap-3 hover:underline focus:underline">
-              <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="text-sm sm:text-base">{COMPANY_INFO.email}</span>
+
+            <span className="hidden sm:block text-surface-700">•</span>
+
+            <a
+              href={mailHref}
+              className="flex items-center gap-2 hover:text-white transition-colors text-sm sm:text-base"
+            >
+              <Mail className="w-4 h-4" />
+              <span>{COMPANY_INFO.email}</span>
             </a>
           </div>
+        </motion.div>
+
+        {/* Footer Line */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-16 sm:mt-20 pt-6 sm:pt-8 border-t border-surface-800"
+        >
+          <p className="text-xs sm:text-sm text-surface-500">
+            © {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.
+          </p>
         </motion.div>
       </div>
     </section>

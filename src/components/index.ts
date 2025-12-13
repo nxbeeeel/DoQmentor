@@ -6,6 +6,7 @@ export { HeroSection } from './sections/HeroSection';
 export { ServicesSection } from './sections/ServicesSection';
 export { OtherServicesSection } from './sections/OtherServicesSection';
 export { TestimonialsSection } from './sections/TestimonialsSection';
+export { CustomerReviewSection } from './sections/CustomerReviewSection';
 export { AboutSection } from './sections/AboutSection';
 export { CTASection } from './sections/CTASection';
 
