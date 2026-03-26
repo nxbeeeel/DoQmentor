@@ -139,10 +139,10 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 export const STATS: Stat[] = [
-  { id: 'clients', icon: 'Users', number: '500+', label: 'Clients Served' },
+  { id: 'clients', icon: 'Users', number: '5000+', label: 'Clients Served' },
   { id: 'countries', icon: 'Globe', number: '25+', label: 'Countries' },
   { id: 'success', icon: 'Award', number: '98%', label: 'Success Rate' },
-  { id: 'experience', icon: 'Clock', number: '10+', label: 'Years Experience' }
+  { id: 'experience', icon: 'Clock', number: '15+', label: 'Years Experience' }
 ];
 
 export const CONTACT_EMAIL = 'doqmentor.com@gmail.com';

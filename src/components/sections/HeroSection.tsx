@@ -99,7 +99,7 @@ export const HeroSection = () => {
             >
               <div className="hero-stats-shell mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-6 px-6 py-5 lg:mx-0 lg:justify-start">
                 <div className="text-center">
-                  <div className="text-2xl font-semibold text-white sm:text-3xl">500+</div>
+                  <div className="text-2xl font-semibold text-white sm:text-3xl">5000+</div>
                   <div className="text-[0.68rem] uppercase tracking-[0.22em] text-surface-500">
                     Clients Served
                   </div>
@@ -113,7 +113,7 @@ export const HeroSection = () => {
                 </div>
                 <div className="hidden h-10 w-px bg-white/10 sm:block" />
                 <div className="text-center">
-                  <div className="text-2xl font-semibold text-white sm:text-3xl">10+</div>
+                  <div className="text-2xl font-semibold text-white sm:text-3xl">15+</div>
                   <div className="text-[0.68rem] uppercase tracking-[0.22em] text-surface-500">
                     Years of Trust
                   </div>
