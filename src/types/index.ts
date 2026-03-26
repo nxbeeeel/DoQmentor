@@ -4,6 +4,12 @@ export interface Service {
   title: string;
   description: string;
   icon: string;
+  image: string;
+  eyebrow: string;
+  imagePosition?: string;
+  accent: string;
+  accentSoft: string;
+  gridClass?: string;
 }
 
 export interface Testimonial {
@@ -40,4 +46,12 @@ export interface CursorState {
   isHovering: boolean;
   isClicking: boolean;
   isVisible: boolean;
+}
+
+export interface Review {
+  id: string;
+  name: string;
+  rating: number;
+  review: string;
+  createdAt: string;
 }

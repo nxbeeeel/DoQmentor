@@ -10,6 +10,7 @@
     "export:logo": "node scripts/export-logos.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
     "@types/nodemailer": "^7.0.2",
     "framer-motion": "^11.0.0",
     "lucide-react": "^0.400.0",

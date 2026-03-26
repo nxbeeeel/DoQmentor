@@ -1,6 +1,8 @@
 'use client';
 
+import type { CSSProperties } from 'react';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { SERVICES } from '@/constants';
 import { getIconComponent } from '@/utils/iconMapper';
 
@@ -8,65 +10,92 @@ export const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 bg-surface-950"
+      className="relative bg-[#0c1728] px-4 py-16 sm:px-6 sm:py-24 lg:py-32"
     >
-      {/* Top Glow */}
-      <div className="section-glow opacity-50" />
+      <div className="section-glow opacity-60" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header - Mobile Optimized */}
+      <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.55 }}
           viewport={{ once: true }}
-          className="text-center mb-10 sm:mb-16"
+          className="mb-10 grid gap-8 lg:mb-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-end"
         >
-          <span className="badge mb-4 sm:mb-6">Our Services</span>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-4 sm:mb-6 px-2">
-            <span className="text-white">Everything you need to </span>
-            <span className="text-gradient-accent">grow globally</span>
-          </h2>
-          <p className="text-base sm:text-lg text-surface-400 max-w-2xl mx-auto px-4">
-            Comprehensive solutions for your international business needs.
+          <div>
+            <span className="badge mb-5">Core Disciplines</span>
+            <h2 className="mb-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
+              Premium service architecture for business movement, licensing,
+              protection, and growth.
+            </h2>
+          </div>
+          <p className="max-w-xl text-sm leading-7 text-surface-400 sm:text-base">
+            Our multi-disciplinary operating model combines documentation precision,
+            regulatory structure, and execution support so clients can move with
+            confidence instead of administrative friction.
           </p>
         </motion.div>
 
-        {/* Services Grid - Mobile 1 column, tablet 2, desktop 3 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
           {SERVICES.map((service, index) => {
             const IconComponent = getIconComponent(service.icon);
+            const isExpanded = service.gridClass?.includes('col-span-2');
+            const cardStyle = {
+              '--service-accent': service.accent,
+              '--service-accent-soft': service.accentSoft,
+            } as CSSProperties;
 
             return (
-              <motion.div
+              <motion.article
                 key={service.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="card p-5 sm:p-6 group cursor-default"
+                style={cardStyle}
+                className={`service-card glass-panel p-4 sm:p-5 ${isExpanded ? 'service-card-expanded' : ''} ${service.gridClass ?? 'xl:col-span-1'}`}
               >
-                {/* Icon */}
-                <div className="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-accent/15 transition-colors">
-                  <IconComponent className="w-5 h-5 text-accent-light" />
+                <div className="service-media-frame" aria-hidden="true">
+                  <div
+                    className="service-media"
+                    style={{
+                      backgroundImage: `url(${service.image})`,
+                      backgroundPosition: service.imagePosition ?? 'center',
+                    }}
+                  />
                 </div>
 
-                {/* Content */}
-                <h3 className="text-sm sm:text-base font-medium text-white mb-2 group-hover:text-accent-light transition-colors">
-                  {service.title}
-                </h3>
+                <div className="service-copy">
+                  <div className={`service-copy-surface ${isExpanded ? 'service-copy-surface-expanded' : ''}`}>
+                    <div>
+                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/12 bg-[#0d1a2c]/52 text-accent-light backdrop-blur-xl">
+                        <IconComponent className="h-5 w-5" />
+                      </div>
 
-                <p className="text-xs sm:text-sm text-surface-400 leading-relaxed">
-                  {service.description}
-                </p>
-              </motion.div>
+                      <p className="mb-3 text-[0.64rem] font-semibold uppercase tracking-[0.24em] text-surface-300">
+                        {service.eyebrow}
+                      </p>
+                      <h3 className="mb-3 max-w-sm text-xl font-semibold text-white sm:text-2xl">
+                        {service.title}
+                      </h3>
+                      <p className="max-w-md text-sm leading-7 text-surface-200">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    <div className="mt-8 inline-flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-accent-light">
+                      View Details
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </div>
+                  </div>
+                </div>
+              </motion.article>
             );
           })}
         </div>
       </div>
 
-      {/* Divider */}
-      <div className="absolute bottom-0 left-0 right-0 divider" />
+      <div className="divider absolute bottom-0 left-0 right-0" />
     </section>
   );
 };

@@ -44,7 +44,7 @@ export const TestimonialsSection = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.4 }}
-            className="card p-6 sm:p-8 md:p-12"
+            className="glass-panel rounded-[28px] p-6 sm:p-8 md:p-12"
           >
             {/* Quote Icon */}
             <Quote className="w-8 h-8 sm:w-10 sm:h-10 text-accent/20 mb-4 sm:mb-6" />
@@ -58,7 +58,7 @@ export const TestimonialsSection = () => {
 
             {/* Quote */}
             <p className="text-base sm:text-lg md:text-xl text-surface-200 mb-6 sm:mb-8 leading-relaxed">
-              "{TESTIMONIALS[currentIndex].text}"
+              {TESTIMONIALS[currentIndex].text}
             </p>
 
             {/* Author */}

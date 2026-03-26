@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { name, email, phone, message } = await request.json();
@@ -12,6 +21,18 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      return NextResponse.json(
+        { error: 'Email service is not configured' },
+        { status: 503 }
+      );
+    }
+
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone || 'Not provided');
+    const safeMessage = escapeHtml(message);
 
     // Create transporter using Gmail
     const transporter = nodemailer.createTransport({
@@ -32,14 +53,14 @@ export async function POST(request: NextRequest) {
           <h2 style="color: #4169E1; border-bottom: 2px solid #4169E1; padding-bottom: 10px;">New Service Request - DoQmentor</h2>
           
           <div style="margin: 20px 0;">
-            <p style="margin: 10px 0;"><strong style="color: #333;">Name:</strong> ${name}</p>
-            <p style="margin: 10px 0;"><strong style="color: #333;">Email:</strong> <a href="mailto:${email}" style="color: #4169E1;">${email}</a></p>
-            <p style="margin: 10px 0;"><strong style="color: #333;">Phone:</strong> ${phone || 'Not provided'}</p>
+            <p style="margin: 10px 0;"><strong style="color: #333;">Name:</strong> ${safeName}</p>
+            <p style="margin: 10px 0;"><strong style="color: #333;">Email:</strong> <a href="mailto:${safeEmail}" style="color: #4169E1;">${safeEmail}</a></p>
+            <p style="margin: 10px 0;"><strong style="color: #333;">Phone:</strong> ${safePhone}</p>
           </div>
           
           <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
             <p style="margin: 0 0 10px 0;"><strong style="color: #333;">Message:</strong></p>
-            <p style="margin: 0; white-space: pre-wrap; line-height: 1.6;">${message}</p>
+            <p style="margin: 0; white-space: pre-wrap; line-height: 1.6;">${safeMessage}</p>
           </div>
           
           <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0; color: #666; font-size: 12px;">

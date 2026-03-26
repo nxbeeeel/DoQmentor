@@ -1,18 +1,76 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Plus_Jakarta_Sans, Sora } from 'next/font/google'
 import './globals.css'
-import { ThemeProvider } from '@/contexts/ThemeContext'
+import { COMPANY_INFO } from '@/constants'
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-jakarta',
+  display: 'swap',
+})
+
+const sora = Sora({
+  subsets: ['latin'],
+  variable: '--font-sora',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'DoQmentor — Premium Global Business Consulting',
-  description: 'Empowering your vision with world-class global consulting services. Documentation, licensing, and business expansion for 500+ clients worldwide.',
-  keywords: 'business consulting, global consulting, documentation, licensing, company registration, trademark, international business',
+  metadataBase: new URL(COMPANY_INFO.siteUrl),
+  title: {
+    default: 'DoQmentor | Global Documentation and Business Consulting',
+    template: '%s | DoQmentor',
+  },
+  description:
+    'DoQmentor helps businesses with documentation, licensing, registration, trademark, passport, attestation, and cross-border consulting services.',
+  keywords: [
+    'DoQmentor',
+    'business consulting',
+    'documentation services',
+    'passport services',
+    'embassy attestation',
+    'company registration',
+    'trademark registration',
+    'import export licence',
+    'GST registration',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: COMPANY_INFO.siteUrl,
+    siteName: COMPANY_INFO.name,
+    title: 'DoQmentor | Global Documentation and Business Consulting',
+    description:
+      'Trusted support for documentation, licensing, registration, attestation, and business growth services.',
+    images: [
+      {
+        url: '/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'DoQmentor logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DoQmentor | Global Documentation and Business Consulting',
+    description:
+      'Trusted support for documentation, licensing, registration, attestation, and business growth services.',
+    images: ['/logo.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: [
+      { url: '/logo.png', type: 'image/png' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
+    apple: [{ url: '/logo.png', type: 'image/png' }],
+  },
 }
 
 export default function RootLayout({
@@ -21,12 +79,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-sans antialiased">
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
-      </body>
+    <html lang="en" className={`${jakarta.variable} ${sora.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }

@@ -6,7 +6,10 @@ import { getIconComponent } from '@/utils/iconMapper';
 
 export const AboutSection = () => {
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 bg-surface-950">
+    <section
+      id="about"
+      className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 bg-surface-950"
+    >
       <div className="section-glow opacity-40" />
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -36,8 +39,11 @@ export const AboutSection = () => {
               navigate regulatory requirements and establish global presence.
             </p>
 
-            <button className="btn btn-primary">
-              Learn More
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="btn btn-secondary"
+            >
+              Start a Briefing
             </button>
           </motion.div>
 
