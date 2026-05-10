@@ -153,3 +153,4 @@ The project is built with modularity in mind:
 - Modify services in `src/services/`
 - Add new UI components in `src/components/ui/`
 - Extend types in `src/types/index.ts`
+
